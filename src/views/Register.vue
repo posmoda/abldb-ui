@@ -263,6 +263,53 @@
                 <label><input type="radio" name="history__malignancy" id="history__malignancy__false" value="false" v-model="patient.malignancy"><span>なし</span></label>
             </fieldset>
         </section>
+        <section class="register__blood">
+            <h2>入院時血液検査</h2>
+            <p class="form__row">
+                <label for="blood__hba1c">HcA1c (NGSP)</label>
+                <input type="number" step="0.1" name="blood__hba1c" id="blood__hba1c" v-model="patient.hba1c">
+            </p>
+            <p class="form__row">
+                <label for="blood__cre">Cre</label>
+                <input type="number" step="0.1" name="blood__cre" id="blood__cre" v-model="patient.cre">
+            </p>
+            <p class="form__row">
+                <label for="blood__egfr">eGFR</label>
+                <input type="number" step="0.1" name="blood__egfr" id="blood__egfr" v-model="patient.egfr">
+            </p>
+            <p class="form__row">
+                <label for="blood__ntProBnp">NT-proBNP</label>
+                <input type="number" step="0.1" name="blood__ntProBnp" id="blood__ntProBnp" v-model="patient.ntProBnp">
+            </p>
+            <p class="form__row">
+                <label for="blood__bnp">BNP</label>
+                <input type="number" step="0.1" name="blood__bnp" id="blood__bnp" v-model="patient.bnp">
+            </p>
+            <p class="form__row">
+                <label for="blood__aptt">APTT</label>
+                <input type="number" step="0.1" name="blood__aptt" id="blood__aptt" v-model="patient.aptt">
+            </p>
+            <p class="form__row">
+                <label for="blood__ptInr">PT-INR</label>
+                <input type="number" step="0.1" name="blood__ptInr" id="blood__ptInr" v-model="patient.ptInr">
+            </p>
+            <p class="form__row">
+                <label for="blood__dDimer">D-Dimer</label>
+                <input type="number" step="0.1" name="blood__dDimer" id="blood__dDimer" v-model="patient.dDimer">
+            </p>
+            <p class="form__row">
+                <label for="blood__hb">Hb</label>
+                <input type="number" step="0.1" name="blood__hb" id="blood__hb" v-model="patient.hb">
+            </p>
+            <p class="form__row">
+                <label for="blood__tsh">TSH</label>
+                <input type="number" step="0.1" name="blood__tsh" id="blood__tsh" v-model="patient.tsh">
+            </p>
+            <p class="form__row">
+                <label for="blood__ft4">FT4</label>
+                <input type="number" step="0.1" name="blood__ft4" id="blood__ft4" v-model="patient.ft4">
+            </p>
+        </section>
     </section>
 </template>
 
