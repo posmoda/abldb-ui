@@ -310,14 +310,19 @@
                 <input type="number" step="0.1" name="blood__ft4" id="blood__ft4" v-model="patient.ft4">
             </p>
         </section>
+        <UCG></UCG>
     </section>
 </template>
 
 <script>
+import UCG from '@/components/ucg.vue'
 // @ is an alias to /src
 
 export default {
     name: 'Register',
+    components: {
+        UCG
+    },
     data() {
         return {
             patient: {
