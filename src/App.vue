@@ -5,7 +5,7 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/register">Register</router-link> | 
       <router-link to="/first_ablation">First Ablation</router-link> | 
-      <router-link to="/madication">Medication</router-link> | 
+      <router-link to="/medication">Medication</router-link> | 
       <router-link to="/following_ablation">Following Ablation</router-link>
     </div>
     <router-view/>
@@ -29,9 +29,19 @@ body {
     margin: 0 auto;
     background-color: #f6f6f4;
 }
+
+/* Header */
+
 header {
     background-color: #6bb3a8;
+    padding: 10px;
 }
+header h1 {
+    color: #f3f3f3;
+}
+
+/* Main */
+
 h1 {
     margin: 0;
 }

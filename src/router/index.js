@@ -25,8 +25,8 @@ const routes = [
   },
   {
     path: '/medication',
-    name: 'Medication',
-    component: () => import(/* webpackChunkName: "medication" */ '@/views/FirstAblationMedication.vue')
+    name: 'AblationMedication',
+    component: () => import( /* webpackChunkName: "ablationMedication" */ '@/views/AblationMedication.vue' )
   },
   {
     path: '/following_ablation',
