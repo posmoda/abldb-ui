@@ -311,23 +311,27 @@
             </p>
         </section>
         <UCG></UCG>
+        <PageInformation v-bind:contents="contents"></PageInformation>
     </section>
 </template>
 
 <script>
 import UCG from '@/components/ucg.vue'
+import PageInformation from '@/components/PageInformation.vue'
 // @ is an alias to /src
 
 export default {
     name: 'Register',
     components: {
-        UCG
+        UCG,
+        PageInformation
     },
     data() {
         return {
             patient: {
                 patientSerialNumber: 0
-            }
+            },
+            contents: "This is a test!"
         }
     }
 }
