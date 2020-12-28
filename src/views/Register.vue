@@ -1,5 +1,5 @@
 <template>
-    <section class="register">
+    <section class="register" id="register">
         <h1>患者情報登録</h1>
         <section class="register__basic">
         <h2>基本情報</h2>
@@ -333,6 +333,23 @@ export default {
             },
             contents: "This is a test!"
         }
+    },
+    methods: {
+        isSection: function( element ){
+            return element.nodeName === "SECTION"
+        }
+    },
+    //el: '#app',
+    mounted: function() {
+        const result = [];
+        for ( var element of this.$el.children ){
+            if ( element.nodeName == "SECTION" ){
+                result.push( element ); 
+            }
+        }
+        console.log( this.$el.children )
+        console.log( Object.keys( this.$el.children ) )
+        console.log(result);
     }
 }
 </script>

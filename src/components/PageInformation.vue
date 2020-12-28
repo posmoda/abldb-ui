@@ -21,4 +21,13 @@ export default {
     }
 }
 </script>
-
+<style scoped>
+div.pageInformation {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 200px;
+    height: 200px;
+    background-color: white;
+}
+</style>
