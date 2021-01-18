@@ -41,4 +41,11 @@ const router = new VueRouter({
   routes
 })
 
+import store from '@/store/index.js'
+
+router.afterEach(( to ) => {
+    console.log( to.name );
+    store.commit('UPDATE_PAGE_CONTENTS', to.name);
+})
+
 export default router

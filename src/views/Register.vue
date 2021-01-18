@@ -311,27 +311,22 @@
             </p>
         </section>
         <UCG></UCG>
-        <PageInformation v-bind:contents="contents"></PageInformation>
     </section>
 </template>
 
 <script>
 import UCG from '@/components/ucg.vue'
-import PageInformation from '@/components/PageInformation.vue'
-// @ is an alias to /src
-
 export default {
     name: 'Register',
     components: {
-        UCG,
-        PageInformation
+        UCG
     },
     data() {
         return {
             patient: {
                 patientSerialNumber: 0
             },
-            contents: "This is a test!"
+            contents: {}
         }
     },
     methods: {
@@ -339,18 +334,11 @@ export default {
             return element.nodeName === "SECTION"
         }
     },
-    //el: '#app',
     mounted: function() {
-        const result = [];
-        for ( var element of this.$el.children ){
-            if ( element.nodeName == "SECTION" ){
-                result.push( element ); 
-            }
-        }
-        console.log( this.$el.children )
-        console.log( Object.keys( this.$el.children ) )
-        console.log(result);
+        console.log ( 'unkounko' );
+        this.$parent.refreshContents;
     }
+    //el: '#app',
 }
 </script>
 <style scoped>

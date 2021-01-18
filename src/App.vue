@@ -9,14 +9,59 @@
       <router-link to="/following_ablation">Following Ablation</router-link>
     </div>
     <router-view/>
+    <PageInformation v-bind:contents="contents"></PageInformation>
   </div>
 </template>
 <script>
 import Header from '@/components/Header.vue'
+import PageInformation from '@/components/PageInformation.vue'
 export default {
     components: {
-        Header
-    }
+        Header,
+        PageInformation
+    },
+    data() {
+        return {
+            contents: {},
+        }
+    },
+    methods: {
+        returnBoke: function () {
+            return "boke";
+        },
+        extractSection: function( dom ) {
+            for ( const element of dom.children ) {
+                if ( element.nodeName == 'SECTION' ) {
+                    return element
+                }
+            }
+        },
+        refleshContents: function() {
+            console.log( "ahobke" );
+            console.log( this.$el );
+            const result = {};
+            const contentsSection = this.extractSection( this.extractSection ( this.$el ) );
+            var headerText = ""
+            for ( var item of contentsSection.children ){
+                if ( item.nodeName == "H2" && headerText !== item.innerText ){
+                    headerText = item.innerText;
+                    result[headerText] = [];
+                }
+                if ( item.nodeName == "P" || item.nodeName == "FIELDSET" ){
+                    result[headerText].push(item.children[0].innerText);
+                }
+            }
+            //console.log( result );
+            //console.log( this.$el );
+            //this.contents = result;
+        }
+    },
+    mounted: function() {
+        //this.refleshContents();
+    },
+    //router.beforeEach( function ( to, from, next ) ) {
+    //    console.log( 'route?' )
+    //}
 }
 </script>
 <style>

@@ -4,7 +4,15 @@
             <dt>症例番号</dt>
             <dd>{{ patientId }}</dd>
             <dt>もくじ</dt>
-            <dd>{{ contents }}</dd>
+            <dd>
+                <ul>
+                    <li v-for="(items, chapter) in contents" :key="chapter">{{ chapter }}
+                        <ul>
+                            <li v-for="item in items" :key="item.key">{{ item }}</li>
+                        </ul>
+                    </li>
+                </ul>
+            </dd>
         </dl>
     </div>
 </template>
@@ -24,8 +32,8 @@ export default {
 <style scoped>
 div.pageInformation {
     position: fixed;
-    top: 10px;
-    right: 10px;
+    top: 0;
+    left: 0;
     width: 200px;
     height: 200px;
     background-color: white;
