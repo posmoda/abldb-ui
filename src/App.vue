@@ -56,9 +56,9 @@ export default {
             //this.contents = result;
         }
     },
-    mounted: function() {
+    //mounted: function() {
         //this.refleshContents();
-    },
+    //},
     //router.beforeEach( function ( to, from, next ) ) {
     //    console.log( 'route?' )
     //}

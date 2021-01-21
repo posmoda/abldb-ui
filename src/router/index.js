@@ -42,9 +42,12 @@ const router = new VueRouter({
 })
 
 import store from '@/store/index.js'
+//import app from '@/main.js'
 
 router.afterEach(( to ) => {
-    console.log( to.name );
+    const test = to.matched[0].instances["default"];
+    console.log( test );
+    console.log( to );
     store.commit('UPDATE_PAGE_CONTENTS', to.name);
 })
 
