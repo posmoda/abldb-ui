@@ -471,6 +471,11 @@ export default {
             firstAblation: {
             }
         }
+    },
+    methods: {
+    },
+    mounted: function() {
+        this.$emit('pushContents');
     }
 }
 </script>

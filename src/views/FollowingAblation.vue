@@ -355,6 +355,9 @@ export default {
             followingAblation: {
             }
         }
+    },
+    mounted: function() {
+        this.$emit('pushContents');
     }
 }
 </script>

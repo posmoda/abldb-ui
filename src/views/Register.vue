@@ -335,10 +335,8 @@ export default {
         }
     },
     mounted: function() {
-        console.log ( 'unkounko' );
-        this.$parent.refreshContents;
+        this.$emit('pushContents');
     }
-    //el: '#app',
 }
 </script>
 <style scoped>

@@ -156,6 +156,9 @@ export default {
             ablationMedication: {
             }
         }
+    },
+    mounted: function() {
+        this.$emit('pushContents');
     }
 }
 </script>

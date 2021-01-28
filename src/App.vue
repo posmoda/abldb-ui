@@ -8,7 +8,7 @@
       <router-link to="/medication">Medication</router-link> | 
       <router-link to="/following_ablation">Following Ablation</router-link>
     </div>
-    <router-view/>
+    <router-view @pushContents="refreshContents"></router-view>
     <PageInformation v-bind:contents="contents"></PageInformation>
   </div>
 </template>
@@ -36,8 +36,7 @@ export default {
                 }
             }
         },
-        refleshContents: function() {
-            console.log( "ahobke" );
+        refreshContents: function() {
             console.log( this.$el );
             const result = {};
             const contentsSection = this.extractSection( this.extractSection ( this.$el ) );
@@ -53,12 +52,12 @@ export default {
             }
             //console.log( result );
             //console.log( this.$el );
-            //this.contents = result;
+            this.contents = result;
         }
     },
-    //mounted: function() {
-        //this.refleshContents();
-    //},
+    mounted: function() {
+        this.refreshContents();
+    },
     //router.beforeEach( function ( to, from, next ) ) {
     //    console.log( 'route?' )
     //}

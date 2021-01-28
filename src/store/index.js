@@ -12,15 +12,18 @@ const getters = {
 
 export default new Vuex.Store({
     state: {
-        patientId: 12345678,
-        pageContents: 'test'
+        patientId: null,
+        loginUser: {
+            id: "testUser",
+            token: "testToken"
+        },
     },
     mutations: {
-        [ types.UPDATE_PATIENT_ID ](state, newId){
+        [ types.UPDATE_PATIENT_ID ]( state, newId ){
             state.patientId = newId;
         },
-        [ types.UPDATE_PAGE_CONTENTS ]( state, contents ){
-            state.pageContents = contents;
+        [ types.UPDATE_USER ]( state, userInfo ){
+            state.loginUser = userInfo;
         }
     },
     getters,
