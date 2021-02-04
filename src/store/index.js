@@ -7,6 +7,9 @@ Vue.use(Vuex)
 const getters = {
     patientId: (state) => {
         return state.patientId;
+    },
+    apiRoot: (state) => {
+        return state.apiRoot;
     }
 }
 
@@ -17,6 +20,7 @@ export default new Vuex.Store({
             id: "testUser",
             token: "testToken"
         },
+        apiRoot: "http://localhost:5000/api"
     },
     mutations: {
         [ types.UPDATE_PATIENT_ID ]( state, newId ){
