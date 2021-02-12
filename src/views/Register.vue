@@ -1,5 +1,6 @@
 <template>
     <section class="register" id="register">
+        <button v-on:click="updateBaseline">test</button>
         <h1>患者情報登録</h1>
         <section class="register__basic">
         <h2>基本情報</h2>
@@ -332,6 +333,24 @@ export default {
     methods: {
         isSection: function( element ){
             return element.nodeName === "SECTION"
+        },
+        updateBaseline: function(){
+            this.axios.post( 
+                this.$store.getters.apiRoot + '/baseline/' + this.patient.patientSerialNumber,
+                this.patient
+            ).then(( response ) => {
+                if( response.status == 200 ){
+                    console.log( 'Baseline update: SUCCESS' )
+                } else {
+                    console.log( 'Baseline update: FAILED' )
+                }
+            });
+        },
+        getBaseline: function(){
+            this.axios.get( this.$store.getters.apiRoot + '/baseline/' + this.patient.patientSerialNumber
+            ).then(( response ) => {
+                this.patient = response.data;
+            })
         }
     },
     mounted: function() {
