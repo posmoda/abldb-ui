@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-      <Header/>
+      <Header />
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/register">Register</router-link> | 
@@ -47,16 +47,18 @@ export default {
                     result[headerText] = [];
                 }
                 if ( item.nodeName == "P" || item.nodeName == "FIELDSET" ){
-                    result[headerText].push(item.children[0].innerText);
+                    result[headerText].push(item.children[0].innerText);    
                 }
             }
-            //console.log( result );
+            console.log( result );
             //console.log( this.$el );
             this.contents = result;
         }
     },
     mounted: function() {
-        this.refreshContents();
+        this.$nextTick(function() {
+            this.refreshContents();
+        })
     },
     //router.beforeEach( function ( to, from, next ) ) {
     //    console.log( 'route?' )
@@ -73,7 +75,6 @@ body {
     margin: 0 auto;
     background-color: #f6f6f4;
 }
-
 /* Header */
 
 header {

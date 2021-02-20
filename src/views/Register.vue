@@ -354,7 +354,9 @@ export default {
         }
     },
     mounted: function() {
-        this.$emit('pushContents');
+        this.$nextTick(function() {
+            this.$emit('pushContents');
+        })        
     }
 }
 </script>

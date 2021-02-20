@@ -41,15 +41,15 @@ const router = new VueRouter({
   routes
 })
 
-import store from '@/store/index.js'
+//import store from '@/store/index.js'
 //import app from '@/main.js'
 
-router.beforeEach(( to, from, next ) => {
-    const test = to.matched[0].instances["default"];
-    console.log( test );
-    console.log( to );
-    store.commit('UPDATE_PAGE_CONTENTS', to.name);
-    next();
-})
+//router.beforeEach(( to, from, next ) => {
+//    const test = to.matched[0].instances["default"];
+//    console.log( test );
+//    console.log( to );
+//    store.commit('UPDATE_PAGE_CONTENTS', to.name);
+//    next();
+//})
 
 export default router

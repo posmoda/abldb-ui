@@ -10,7 +10,5 @@ export default {
     components: {
         PatientList
     },
-    data: function() {
-    }
 };
 </script>

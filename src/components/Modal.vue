@@ -1,20 +1,20 @@
 <template>
     <transition name="modal" appear>
-        <div class="modal modal-overlay" @click.self="$emit('close')">
+        <div class="modal modal-overlay" @click.self="$emit('closeModal')">
             <div class="modal-window">
                 <div class="modal-content">
                     <slot />
                 </div>
                 <footer class="modal-footer">
                     <slot name="footer">
-                        <button @click="@emit('close')">閉じる</button>
+                        <button @click="$emit('closeModal')">閉じる</button>
                     </slot>
                 </footer>
             </div>
         </div>
     </transition>
 </template>
-<style lang="stylus" scoped>
+<style scoped>
 .modal {
     &.modal-overlay {
         display: flex;
@@ -26,7 +26,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.5)
+        background: rgba(0, 0, 0, 0.5);
     }
     &-window {
         background: #fff;
@@ -54,4 +54,4 @@
 .modal-leave-active {
     transition: opacity 0.6s ease 0.4s;
 }
-
+</style>
