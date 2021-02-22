@@ -7,9 +7,9 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="patient in patients" v-bind:key="patient.id">
+                <tr v-for="patient in patients" v-bind:key="patient.patientSerialNumber">
                     <td>{{ patient.patientSerialNumber }}</td>
-                    <td><router-link :to="{ path: 'register', params: { patientSerialNumber: patient.patientSerialNumber }}">{{ patient.baseline }}</router-link></td>
+                    <td><a v-on:click="goBaseline(patient.patientSerialNumber)">{{ patient.baseline }}</a></td>
                     <td><router-link to="/first_ablation">{{ patient.firstAblation }}</router-link></td>
                     <td><router-link to="/following_ablation">{{ patient.followingAblation }}</router-link></td>
                 </tr>
@@ -29,10 +29,14 @@ export default {
     },
     methods: {
         getPatientList() {
-            this.axios.post( this.$store.getters.apiRoot + '/patients'
+            this.axios.get( this.$store.getters.apiRoot + '/patients'
             ).then(( response ) => {
                 this.patients = response.data;
             });
+        },
+        goBaseline(number) {
+            this.$store.commit( 'UPDATE_PATIENT_ID', number );
+            this.$router.push( 'register', true, false );
         }
     },
     mounted() {

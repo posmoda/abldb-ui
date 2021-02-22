@@ -347,7 +347,7 @@ export default {
             });
         },
         getBaseline: function(){
-            this.axios.get( this.$store.getters.apiRoot + '/baseline/' + this.patient.patientSerialNumber
+            this.axios.get( this.$store.getters.apiRoot + '/baseline/' + this.$store.getters.patientId
             ).then(( response ) => {
                 this.patient = response.data;
             })
@@ -356,7 +356,11 @@ export default {
     mounted: function() {
         this.$nextTick(function() {
             this.$emit('pushContents');
-        })        
+        });
+        this.getBaseline();
+    },
+    beforeUpdate: function() {
+        this.updateBaseline();
     }
 }
 </script>
