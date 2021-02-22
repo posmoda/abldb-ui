@@ -10,6 +10,9 @@ const getters = {
     },
     apiRoot: (state) => {
         return state.apiRoot;
+    },
+    loginToken: (state) => {
+        return state.loginUser.token;
     }
 }
 

@@ -10,7 +10,7 @@
     <Modal @close="closeModal" v-if="modal">
         <p>本当に新規症例を登録しますか？</p>
         <template slot="footer">
-            <button>TEST</button>
+            <button v-on:click="requestNewPatient">OK</button><button v-on:click="closeModal">キャンセル</button>
         </template>
     </Modal>
   </div>
@@ -41,6 +41,17 @@ export default {
         },
         openModal: function() {
             this.modal = true;
+        },
+        closeModal: function() {
+            this.modal = false;
+        },
+        requestNewPatient: function() {
+            this.axios.get( this.$store.getters.apiRoot + '/baseline/new', {
+                headers: { "Authorization": "Bearer hanamogera" },
+                data: {}
+            }).then(( response ) => {
+                console.log( response.data );
+            });
         }
     }
 }
