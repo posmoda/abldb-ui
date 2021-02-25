@@ -3,6 +3,10 @@
         <button v-on:click="updateBaseline">test</button>
         <h1>患者情報登録</h1>
         <section class="register__basic">
+        <p class="form__row">
+            <label for="basic__ucgid">ucgid</label>
+            <input type="number" name="basic__ucgid" id="basic__ucgid" v-model.number="patient.ucgId">
+        </p>
         <h2>基本情報</h2>
         <p><label for="basic__patientSerialNumber">患者番号</label>{{ patient.patientSerialNumber }}</p>
         <fieldset>
@@ -311,7 +315,7 @@
                 <input type="number" step="0.1" name="blood__ft4" id="blood__ft4" v-model="patient.ft4">
             </p>
         </section>
-        <UCG></UCG>
+        <UCG :ucgId="patient.ucgId"></UCG>
     </section>
 </template>
 
@@ -325,9 +329,9 @@ export default {
     data() {
         return {
             patient: {
-                patientSerialNumber: this.$store.getters.patientId
+                patientSerialNumber: this.$store.getters.patientId,
+                ucgId: null
             },
-            contents: {}
         }
     },
     methods: {
@@ -361,6 +365,16 @@ export default {
     },
     beforeUpdate: function() {
         this.updateBaseline();
+    },
+    computed: {
+        ucgId: {
+            get: function() {
+                return this.patient.ucgId;
+            },
+            set: function(id) {
+                this.patient.ucgId = id;
+            }
+        }
     }
 }
 </script>

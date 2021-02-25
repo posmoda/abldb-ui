@@ -121,13 +121,52 @@
 </template>
 <script>
 export default {
+    name: 'UCG',
+    props: {
+        ucgId: Number
+    },
     data() {
         return {
-            ucg: {
-                ucgId: 0
-            }
+            ucg: {}
         }
+    },
+    methods: {
+        informUcgId: function( id ) {
+            console.log('unkokko' + id )
+            this.$emit( 'getUcgId', id );
+        },
+        getUcg: function( id ) {
+            this.axios.get(
+                this.$store.getters.apiRoot + '/ucg/' + id
+            ).then(( response ) => {
+                this.ucg = response.data;
+            });        
+        },
+        updateUcg: function() {
+            this.axios.post(
+                this.$store.getters.apiRoot + '/ucg/' + this.ucg.ucgId,
+                this.ucg
+            ).then(( response ) => {
+                if( response.status == 200 ){
+                    console.log( 'UCG update: SUCCESS' );
+                } else {
+                    console.log( 'UCG update: FAILED' );
+                }
+            });
+        }
+    },
+    //computed: {
+    //    ucgId: function() {
+    //        return this.props.ucgId;
+    //    }
+    //},
+    watch: {
+        ucgId: function( newId ) {
+            this.getUcg( newId );
+        }
+    },
+    beforeUpdate: function() {
+        this.updateUcg();
     }
 }
 </script>
-        

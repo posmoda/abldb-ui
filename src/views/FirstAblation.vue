@@ -473,9 +473,31 @@ export default {
         }
     },
     methods: {
+        updateFirstAblation: function() {
+            this.axios.post( 
+                this.$store.getters.apiRoot + '/1st-abl/' + this.$store.getters.patientId,
+                this.firstAblation
+            ).then(( response ) => {
+                if( response.status == 200 ){
+                    console.log( 'Baseline update: SUCCESS' )
+                } else {
+                    console.log( 'Baseline update: FAILED' )
+                }
+            });
+        },
+        getFirstAblation: function() {
+            this.axios.get( this.$store.getters.apiRoot + '/1st-abl/' + this.$store.getters.patientId
+            ).then(( response ) => {
+                this.firstAblation = response.data;
+            })
+        }
     },
     mounted: function() {
         this.$emit('pushContents');
+        this.getFirstAblation();
+    },
+    beforeUpdate: function() {
+        this.updateFirstAblation();
     }
 }
 </script>
