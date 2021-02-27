@@ -24,12 +24,12 @@ const routes = [
     component: () => import('../views/FirstAblation.vue')
   },
   {
-    path: '/medication',
+      path: '/medication/:medicationId',
     name: 'AblationMedication',
     component: () => import( /* webpackChunkName: "ablationMedication" */ '@/views/AblationMedication.vue' )
   },
   {
-    path: '/following_ablation',
+      path: '/following_ablation/:followAblationId',
     name: 'FollowingAblation',
     component: () => import( /* webpackChunkName: "followingAblation" */ '@/views/FollowingAblation.vue' )
   }
