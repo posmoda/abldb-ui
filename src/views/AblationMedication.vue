@@ -151,6 +151,9 @@
 <script>
 export default {
     name: 'AblationMedication',
+    props: {
+        parentGivenId: null
+    },
     data() {
         return {
             ablationMedication: {
@@ -158,15 +161,25 @@ export default {
         }
     },
     methods:{
+        detectId() {
+            const routedId = this.$route.params.medicationId;
+            const parentGivenId = this.parentGivenId;
+            if ( routedId ){
+                return routedId;
+            } else {
+                return parentGivenId;
+            }
+        },
         getAblationMedication() {
-            const id = this.$route.params.medicationId
+            const id = this.detectId()
             this.axios.get( this.$store.getters.apiRoot + '/medication/' + id
             ).then(( response ) => {
                 this.ablationMedication = response.data;
             });
         },
         updateAblationMedication() {
-            const id = this.$route.params.medicationId
+            const id = this.detectId();
+            console.log( id );
             this.axios.post( 
                 this.$store.getters.apiRoot + '/medication/' + id,
                 this.ablationMedication
