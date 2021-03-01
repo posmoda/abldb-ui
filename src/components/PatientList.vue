@@ -3,15 +3,15 @@
         <table>
             <thead>
                 <tr>
-                    <th>No.</th><th>基本情報</th><th>初回アブレーション</th><th>初回アブレーション処方</th><th>追加アブレーション</th>
+                    <th>症例番号</th><th>ベースライン</th><th>初回ABL</th><th>初回ABL処方</th><th>追加ABL</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="patient in patients" v-bind:key="patient.patientSerialNumber">
                     <td>{{ patient.patientSerialNumber }}</td>
-                    <td><a v-on:click="goBaseline(patient.patientSerialNumber)">{{ patient.baseline }}</a></td>
-                    <td v-if="patient.firstAblationId"><router-link to="/first_ablation"><span v-if="patient.firstAblationId">入力あり</span><span v-else>新規入力</span></router-link></td>
-                    <td v-if="patient.internalMedicineId"><router-link :to="{name: 'AblationMedication', params: {medicationId: patient.internalMedicineId}}">Done</router-link></td>
+                    <td><a v-on:click="goBaseline(patient.patientSerialNumber)">入力</a></td>
+                    <td><a v-on:click="goFirstAblation(patient.patientSerialNumber)"><span v-if="patient.firstAblationId">入力あり</span><span v-else>新規入力</span></a></td>
+                    <td v-if="patient.internalMedicineId"><router-link :to="{name: 'AblationMedication', params: {medicationId: patient.internalMedicineId}}">入力あり</router-link></td>
                     <td v-else><a v-on:click="createFirstAblMedication(patient.firstAblationId)">新規入力</a></td>
                     <td>
                         <ol>
@@ -52,7 +52,13 @@ export default {
         },
         goBaseline(number) {
             this.$store.commit( 'UPDATE_PATIENT_ID', number );
+            this.$store.dispatch( 'updatePatientIdAction' );
             this.$router.push( 'register', true, false );
+        },
+        goFirstAblation( number ) {
+            this.$store.commit( 'UPDATE_PATIENT_ID', number );
+            this.$store.dispatch( 'updatePatientIdAction' );
+            this.$router.push( 'first_ablation', true, false );
         },
         createFirstAblMedication(firstAblId) {
             this.axios.get( this.$store.getters.apiRoot + '/1st-abl/' + firstAblId + '/medication_id'
@@ -63,6 +69,7 @@ export default {
         },
         openFollowAblModal(patientId) {
             this.$store.commit( 'UPDATE_PATIENT_ID', patientId );
+            this.$store.dispatch( 'updatePatientIdAction' );
             this.followAblModal = true;
         },
         closeFollowAblModal() {

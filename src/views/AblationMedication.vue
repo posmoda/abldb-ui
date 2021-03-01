@@ -157,7 +157,8 @@ export default {
     data() {
         return {
             ablationMedication: {
-            }
+            },
+            isIdRouted: false
         }
     },
     methods:{
@@ -165,17 +166,24 @@ export default {
             const routedId = this.$route.params.medicationId;
             const parentGivenId = this.parentGivenId;
             if ( routedId ){
+                console.log( 'routed' )
+                this.isIdRouted = true
                 return routedId;
             } else {
                 return parentGivenId;
             }
         },
         getAblationMedication() {
-            const id = this.detectId()
-            this.axios.get( this.$store.getters.apiRoot + '/medication/' + id
-            ).then(( response ) => {
-                this.ablationMedication = response.data;
-            });
+            const id = this.detectId();
+            if (id) {
+                this.axios.get( this.$store.getters.apiRoot + '/medication/' + id
+                ).then(( response ) => {
+                    this.ablationMedication = response.data;
+                    //if ( this.isIdRouted ){
+                    //    this.$store.commit( 'UPDATE_PATIENT_ID', 1 );
+                    //}
+                });        
+            }
         },
         updateAblationMedication() {
             const id = this.detectId();
@@ -198,6 +206,11 @@ export default {
     },
     beforeUpdate: function() {
         this.updateAblationMedication();
+    },
+    watch: {
+        parentGivenId: function(){
+            this.getAblationMedication();
+        }
     }
 }
 </script>

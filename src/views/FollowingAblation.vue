@@ -8,7 +8,7 @@
                 <input type="date" name="followingAblation__date" id="followingAblation__date" v-model.number="followingAblation.date">
             </p>
         </section>
-        <UCG></UCG>
+        <UCG :ucgId="followingAblation.ucgId"></UCG>
         <section class="followingAblation__content">
             <h2>Session内容</h2>
             <fieldset>
@@ -339,7 +339,7 @@
                 <input type="text" name="content__complications_detail" id="content__complications_detail" v-model="followingAblation.complications_detail">
             </p>
         </section>
-        <AblationMedication></AblationMedication>
+        <AblationMedication :parentGivenId="followingAblation.internalMedicineId"></AblationMedication>
     </section>
 </template>
 <script>
@@ -361,7 +361,9 @@ export default {
             const followAblationId = this.$route.params.followAblationId
             this.axios.get( this.$store.getters.apiRoot + '/following_ablation/' + followAblationId
             ).then(( response ) => {
-                this.AblationMedication = response.data;
+                this.followingAblation = response.data;
+                this.$store.commit( 'UPDATE_PATIENT_ID', response.data.patientSerialNumber );
+                this.$store.dispatch( 'updatePatientIdAction' );
             });
         },
         updateFollowAblation() {
@@ -376,9 +378,11 @@ export default {
             });
         }
     },
+    created: function() {
+        this.getFollowAblation();
+    },
     mounted: function() {
         this.$emit('pushContents');
-        this.getFollowAblation();
     },
     beforeUpdate: function() {
         this.updateFollowAblation();

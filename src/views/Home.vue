@@ -53,6 +53,7 @@ export default {
                 data: {}
             }).then(( response ) => {
                 this.$store.commit( 'UPDATE_PATIENT_ID', response.data );
+                this.$store.dispatch( 'updatePatientIdAction' );
                 this.$router.push( 'register', true, false );
             });
         }

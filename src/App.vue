@@ -1,13 +1,13 @@
 <template>
   <div id="app">
       <Header />
-    <div id="nav">
+    <!--<div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/register">Register</router-link> | 
       <router-link to="/first_ablation">First Ablation</router-link> | 
       <router-link to="/medication">Medication</router-link> | 
       <router-link to="/following_ablation">Following Ablation</router-link>
-    </div>
+    </div>-->
     <router-view @pushContents="refreshContents"></router-view>
     <PageInformation v-bind:contents="contents"></PageInformation>
   </div>
