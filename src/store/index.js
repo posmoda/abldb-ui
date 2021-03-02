@@ -15,6 +15,9 @@ const getters = {
     },
     loginToken: (state) => {
         return state.loginUser.token;
+    },
+    currentPatient: (state) => {
+        return state.currentPatient;
     }
 }
 
