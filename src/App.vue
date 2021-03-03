@@ -66,20 +66,34 @@ export default {
 }
 </script>
 <style>
+* {
+    box-sizing: border-box;
+}
 html {
     color: #333;
     font-family: "Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", sans-serif;
 }
 body {
-    max-width: 1000px;
-    margin: 0 auto;
-    background-color: #f6f6f4;
+    margin: 0;
+    margin-left: 20%;
+    margin-top: 80px;
+    padding: 0 10%;
+    max-width: 80%;
+    background-color: #dddddd;
+    position: relative;
 }
+
 /* Header */
 
 header {
-    background-color: #6bb3a8;
+    background-color: #80abb0;
     padding: 10px;
+    position: fixed; 
+    top: 0;
+    left: 20%;
+    right: 0;
+    height: 80px;
+    z-index: 100;
 }
 header h1 {
     color: #f3f3f3;
@@ -89,17 +103,24 @@ header h1 {
 
 h1 {
     margin: 0;
+    margin-top: 2.5em;
+    font-size: 2.5rem;
+}
+.pageInformation h1 {
 }
 h2 {
-    color: #333;
+    color: #fcfcfc;
     font-size: 2rem;
     text-align: center;
-    border-bottom: double 5px #6bb3a8;
-    background-color: white;
+    border-bottom: double 5px #fcfcfc;
+    background-color: #718ca0;
+    position: sticky;
+    top: 80px;
+    z-index: 10;
 }
 legend, label {
     color: white;
-    background-color: #6bb3a8;
+    background-color: #80abb0;
     padding: 5px 10px;
     font-size: 1.2rem;
     line-height: 1em;
@@ -118,11 +139,12 @@ input[type="number"] {
     -moz-appearance: textfield;
 }
 p.form__row, fieldset {
-    background-color: white;
+    background-color: #fcfcfc;
     margin: 20px 0;
+    border-radius: 10px;
 }
 p.form__row {
-    margin-top: 20px + 0.5em + 5px);
+    margin-top: calc(20px + 0.5em + 5px);
     margin-left: 2px;
     margin-right: 2px;
     padding: 10px;
@@ -140,9 +162,9 @@ p.form__row input {
     font-size: 1.5rem;
     width: 70%;
     text-align: center;
-    border: 2px solid #97c5a3;
+    border: 2px solid #80abb0;
     padding: 10px;
-    background-color: #fefcd1;
+    background-color: #dddddd;
 }
 fieldset {
     display: flex;
@@ -156,10 +178,10 @@ fieldset > label {
     display: flex;
     align-content: center;
     justify-content: center;
-    border: 1px solid #97c5a3;
-    border-top: 2px solid #97c5a3;
-    border-bottom: 2px solid #97c5a3;
-    background-color: #fefcd1;
+    border: 1px solid #80abb0;
+    border-top: 2px solid #80abb0;
+    border-bottom: 2px solid #80abb0;
+    background-color: #8a8a58;
     color: #333;
     text-align: center;
     padding: 0;
@@ -167,11 +189,11 @@ fieldset > label {
 }
 fieldset > label:first-of-type {
     margin-left: 10px;
-    border-left: 2px solid #97c5a3;
+    border-left: 2px solid #80abb0;
 }
 fieldset > label:last-of-type {
     margin-right: 10px;
-    border-right: 2px solid #97c5a3;
+    border-right: 2px solid #80abb0;
 }
 fieldset > label > input {
     position: absolute;
@@ -183,11 +205,11 @@ fieldset > label > span {
     margin: 0;
     padding: 10px 0;
     width: 100%;
-    height: calc(100% - 20px);
-    background-color: #fefcd1;
+    height: 100%;
+    background-color: #dddddd;
 }
 fieldset > label > input:checked + span {
-    background-color: #fddc8b;
-    color: #333;
+    background-color: #80abb0;
+    color: #fcfcfc;
 }
 </style>

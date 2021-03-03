@@ -1,14 +1,8 @@
 <template>
     <section class="register" id="register">
-        <button v-on:click="updateBaseline">test</button>
-        <h1>患者情報登録</h1>
+        <h1>ベースライン</h1>
         <section class="register__basic">
-        <p class="form__row">
-            <label for="basic__ucgid">ucgid</label>
-            <input type="number" name="basic__ucgid" id="basic__ucgid" v-model.number="patient.ucgId">
-        </p>
         <h2>基本情報</h2>
-        <p><label for="basic__patientSerialNumber">患者番号</label>{{ patient.patientSerialNumber }}</p>
         <fieldset>
             <legend>性別</legend>
             <label><input type="radio" name="basic__sex" id="male" v-bind:value="true" v-model="patient.sex"><span>男性</span></label>

@@ -1,8 +1,5 @@
 <template>
   <div class="home">
-    <div class="leftColumn">
-        <p>Export</p>
-    </div>
     <div class="rightColumn">
         <p><button v-on:click="openModal">新規登録</button></p>
         <RegisteredList class="registeredList" />

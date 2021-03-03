@@ -1,10 +1,5 @@
 <template>
     <header>
-        <h1><a href="/">アブレーションレジストリー</a></h1>
-        <section class="header__user">
-            <p>ユーザー名</p>
-            <button>ログアウト</button>
-        </section>
         <section class="header__stageNavigation">
             <ul>
                 <li><router-link to="/">症例一覧</router-link></li>
@@ -58,19 +53,53 @@ export default {
 }
 </script>
 <style scoped>
-.header__stageNabigation > ul {
-
+h1 {
+    margin: 0;
+}
+.header__stageNavigation > ul {
+    padding-left: 1em;
 }
 .header__stageNavigation > ul > li {
     display: inline-block;
     position: relative;
     overflow: visible;
+    background-color: #fcfcfc;
+    line-height: 1em;
+    margin: 0;
+    margin-right: calc((1.2rem + 10px) / 2 );
+    padding: 5px 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 5px 0 0 5px;
+}
+.header__stageNavigation > ul > li:after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    height: 0;
+    width: 0;
+    border: calc((1.2rem + 10px) / 2) solid transparent;
+    border-left: calc((1.2rem + 10px) / 2) solid #fcfcfc;
+
 }
 .header__stageNavigation > ul > li > ol {
     display: none;
+    list-style: none;
+    font-size: 1rem;
 }
 .header__stageNavigation > ul > li:hover > ol {
     display: block;
     position: absolute;
+    left: 0;
+    width: auto;
+    padding: 0;
+    background-color: #fcfcfc;
+    border-radius: 0 0 5px 5px;
+}
+.header__stageNavigation > ul > li:hover > ol > li {
+    margin: 0;
+    padding: 0.2em 0.5em;
 }
 </style>

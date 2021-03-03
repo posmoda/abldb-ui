@@ -1,8 +1,25 @@
 <template>
     <div class="pageInformation">
-        <dl>
+        <h1><a href="/">KUHP Cardio Ablation Registry</a></h1>
+        <dl class="pageInformation__ptNumber">
             <dt>症例番号</dt>
             <dd>{{ patientId }}</dd>
+        </dl>
+        <section class="header__user">
+            <table>
+                <tr>
+                    <th>所属</th>
+                    <td>京都大学病院</td>
+                </tr>
+                <tr>
+                    <th>ユーザー名</th>
+                    <td>テストユーザー</td>
+                </tr>
+            </table>
+            <p><button>ログアウト</button></p>
+        </section>
+        <section class="header__contents">
+        <dl>
             <dt>もくじ</dt>
             <dd>
                 <ul>
@@ -14,6 +31,7 @@
                 </ul>
             </dd>
         </dl>
+        </section>
     </div>
 </template>
 <script>
@@ -30,12 +48,89 @@ export default {
 }
 </script>
 <style scoped>
+h1 {
+    margin: 0;
+    margin-bottom: 0.5em;
+    width: 50%;
+    background-color: #80abb0;
+    color: #fcfcfc;
+    line-height: 1em;
+    padding: 0.5em;
+    font-size: 20px;
+    font-family: Century Gothic、CenturyGothic、AppleGothic、sans-serif;
+    border-radius: 10px;
+    text-align: center;
+    border: 5px #dddddd solid;
+    float: left;
+    overflow: hidden;
+}
+h1 a,
+h1 a:hover,
+h1 a:visited {
+    color: inherit;
+    text-decoration: inherit;
+}
+
 div.pageInformation {
     position: fixed;
     top: 0;
     left: 0;
-    width: 200px;
-    height: 200px;
-    background-color: white;
+    width: 20%;
+    height: 100vh;
+    background-color: #718ca0;
+    padding: 10px;
+    overflow: scroll;
+}
+dl.pageInformation__ptNumber {
+    color: #fcfcfc;
+    text-align: center;
+}
+dl.pageInformation__ptNumber dt:after {
+    content: ':';
+}
+dl.pageInformation__ptNumber dd {
+    font-weight: bold;
+    font-size: 3rem;
+    line-height: 1em;
+}
+section.header__user {
+    clear: both;
+}
+section.header__user table {
+    margin: 0 auto;
+}
+section.header__user th {
+    text-align: right;
+}
+section.header__user th:after {
+    content: "：";
+}
+section.header__user td {
+    color: #fcfcfc;
+    font-weight: bold;
+}
+section.header__user p {
+    text-align: center;
+    margin: 0.5em;
+}
+section.header__contents {
+    border: 1px solid white;
+    position: relative;
+    bottom: 0;
+}
+section.header__contents dd {
+    margin: 0;
+}
+section.header__contents dd ul {
+    list-style: none;
+    color: #fcfcfc;
+    font-weight: bold;
+}
+section.header__contents dd > ul {
+    padding: 0;
+}
+section.header__contents dd > ul > li > ul {
+    font-weight: normal;
+    font-size: 0.8rem;
 }
 </style>

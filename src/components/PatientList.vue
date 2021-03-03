@@ -87,3 +87,31 @@ export default {
     }
 }
 </script>
+<style scoped>
+table {
+    width: 100%;
+    font-size: 1.2rem;
+    margin: 0 auto;
+    text-align: center;
+}
+thead {
+    background-color: #718ca0;
+    color: #fcfcfc;
+    position: sticky;
+    top: 80px;
+}
+th, td {
+    padding: 2px 10px;
+}
+tbody {
+    background-color: #fcfcfc;
+}
+table a {
+    display: block;
+    background-color: #80abb0;
+    border-radius: 5px;
+    padding: 2px 10px;
+    font-weight: bold;
+    color: #fcfcfc;
+}
+</style>
