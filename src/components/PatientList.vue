@@ -10,14 +10,15 @@
                 <tr v-for="patient in patients" v-bind:key="patient.patientSerialNumber">
                     <td>{{ patient.patientSerialNumber }}</td>
                     <td><a v-on:click="goBaseline(patient.patientSerialNumber)">入力</a></td>
-                    <td><a v-on:click="goFirstAblation(patient.patientSerialNumber)"><span v-if="patient.firstAblationId">入力あり</span><span v-else>新規入力</span></a></td>
-                    <td v-if="patient.internalMedicineId"><router-link :to="{name: 'AblationMedication', params: {medicationId: patient.internalMedicineId}}">入力あり</router-link></td>
-                    <td v-else><a v-on:click="createFirstAblMedication(patient.firstAblationId)">新規入力</a></td>
+                    <td><a v-on:click="goFirstAblation(patient.patientSerialNumber)" v-bind:class="[patient.firstAblationId ? '' : 'notice' ]"><span v-if="patient.firstAblationId">入力あり</span><span v-else>新規入力</span></a></td>
+                    <td v-if="patient.firstAblationId === null"></td>
+                    <td v-else-if="patient.internalMedicineId"><router-link :to="{name: 'AblationMedication', params: {medicationId: patient.internalMedicineId}}">入力あり</router-link></td>
+                    <td v-else><a class="notice" v-on:click="createFirstAblMedication(patient.firstAblationId)">新規入力</a></td>
                     <td>
-                        <ol>
-                            <li v-for="ablation in patient.followingAblations" v-bind:key="patient.patientSerialNumber + ablation"><router-link :to="{ name: 'FollowingAblation', params: { followAblationId: ablation }}">{{ ablation }}</router-link></li>
+                        <ol class="followingAblList">
+                            <li v-for="(ablation, index) in patient.followingAblations" v-bind:key="patient.patientSerialNumber + ablation"><router-link :to="{ name: 'FollowingAblation', params: { followAblationId: ablation }}">{{ index + 2 }}</router-link></li>
                         </ol>
-                        <p><a v-on:click="openFollowAblModal(patient.patientSerialNumber)">新規追加</a></p>
+                        <p><a class="notice" v-on:click="openFollowAblModal(patient.patientSerialNumber)">新規追加</a></p>
                     </td>
                 </tr>
             </tbody>
@@ -99,12 +100,14 @@ thead {
     color: #fcfcfc;
     position: sticky;
     top: 80px;
+    font-size: 1rem;
 }
 th, td {
-    padding: 2px 10px;
+    padding: 5px;
 }
 tbody {
     background-color: #fcfcfc;
+    white-space: nowrap;
 }
 table a {
     display: block;
@@ -113,5 +116,26 @@ table a {
     padding: 2px 10px;
     font-weight: bold;
     color: #fcfcfc;
+    text-decoration: none;
+    cursor: pointer;
+}
+table a.notice {
+    background-color: #e26061;
+}
+ol.followingAblList {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+    margin-left: -2.5px;
+    margin-bottom: 5px;
+}
+ol.followingAblList li {
+    display: block;
+    margin: 0 2.5px;
+    margin-bottom: 5px;
+}
+table p {
+    margin: 0;
 }
 </style>

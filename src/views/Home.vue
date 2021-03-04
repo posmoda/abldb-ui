@@ -1,7 +1,8 @@
 <template>
   <div class="home">
+      <h1>症例一覧</h1>
     <div class="rightColumn">
-        <p><button v-on:click="openModal">新規登録</button></p>
+        <p><button class="newPatient" v-on:click="openModal">新規登録</button></p>
         <RegisteredList class="registeredList" />
     </div>
     <Modal @close="closeModal" v-if="modal">
@@ -58,12 +59,13 @@ export default {
 }
 </script>
 <style scoped>
-div.leftColumn {
-    float: left;
-    width: 20%;
+button.newPatient {
+    font-size: 1.5rem;
+    padding: 2px 30px;
 }
 div.rightColumn {
-    width: 80%;
+    width: 100%;
+    margin: 0 auto;
 }
 table.registeredList {
     margin: 0 auto;

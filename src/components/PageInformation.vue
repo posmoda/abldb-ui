@@ -1,5 +1,6 @@
 <template>
     <div class="pageInformation">
+        <div class="sticky">
         <h1><a href="/">KUHP Cardio Ablation Registry</a></h1>
         <dl class="pageInformation__ptNumber">
             <dt>症例番号</dt>
@@ -18,9 +19,10 @@
             </table>
             <p><button>ログアウト</button></p>
         </section>
+        </div>
         <section class="header__contents">
         <dl>
-            <dt>もくじ</dt>
+            <dt>インデックス</dt>
             <dd>
                 <ul>
                     <li v-for="(items, chapter) in contents" :key="chapter">{{ chapter }}
@@ -70,7 +72,14 @@ h1 a:visited {
     color: inherit;
     text-decoration: inherit;
 }
-
+div.sticky {
+    margin: 0;
+    position: sticky;
+    top: 20px;
+    z-index: 10;
+    background-color: #718ca0;
+    padding-bottom: 5px;
+}
 div.pageInformation {
     position: fixed;
     top: 0;
@@ -79,7 +88,9 @@ div.pageInformation {
     height: 100vh;
     background-color: #718ca0;
     padding: 10px;
+    padding-top: 0;
     overflow: scroll;
+    overflow-x: hidden;
 }
 dl.pageInformation__ptNumber {
     color: #fcfcfc;
@@ -114,9 +125,19 @@ section.header__user p {
     margin: 0.5em;
 }
 section.header__contents {
-    border: 1px solid white;
     position: relative;
     bottom: 0;
+}
+section.header__contents dl {
+    padding: 0;
+    margin: 0;
+}
+section.header__contents dt {
+    border-bottom: 1px solid #fcfcfc;
+    color: #fcfcfc;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 0.5em;
 }
 section.header__contents dd {
     margin: 0;
@@ -132,5 +153,6 @@ section.header__contents dd > ul {
 section.header__contents dd > ul > li > ul {
     font-weight: normal;
     font-size: 0.8rem;
+    padding-left: 30px;
 }
 </style>

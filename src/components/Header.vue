@@ -6,13 +6,14 @@
                 <li><a v-on:click="openBaseline">ベースライン</a></li>
                 <li><a v-on:click="openFirstAbl">初回ABL</a></li>
                 <li>
-                    <a v-if="currentPatient.internalMedicineId" v-on:click="openFirstAblMed(currentPatient.internalMedicineId)">初回ABL処方</a>
+                    <a v-if="currentPatient.firstAblationId === null" class="invalid">初回ABL処方</a>
+                    <a v-else-if="currentPatient.internalMedicineId" v-on:click="openFirstAblMed(currentPatient.internalMedicineId)">初回ABL処方</a>
                     <a v-else v-on:click="createFirstAblMedication(currentPatient.firstAblationId)">初回ABL処方</a>
                 </li>
                 <li>
                     追加ABL
                     <ol>
-                        <li v-for="ablation in currentPatient.followingAblations" v-bind:key="ablation"><a v-on:click="openFollowAbl(ablation)">hoge</a></li>
+                        <li v-for="(ablationId, index) in currentPatient.followingAblations" v-bind:key="ablationId"><a v-on:click="openFollowAbl(ablationId)">{{index + 2}}回目</a></li>
                         <li v-on:click="requestFollowAblation">新規ABL</li>
                     </ol>
                 </li>
@@ -56,8 +57,25 @@ export default {
 h1 {
     margin: 0;
 }
+header {
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+}
 .header__stageNavigation > ul {
     padding-left: 1em;
+    vertical-align: middle;
+    margin: 0;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.header__stageNavigation a {
+    text-decoration: none;
+    color: inherit;
+}
+.header__stageNavigation .invalid {
+    color: #b6b6b6;
+    cursor: default;
 }
 .header__stageNavigation > ul > li {
     display: inline-block;
@@ -66,8 +84,8 @@ h1 {
     background-color: #fcfcfc;
     line-height: 1em;
     margin: 0;
-    margin-right: calc((1.2rem + 10px) / 2 );
-    padding: 5px 10px;
+    margin-right: calc((1.2rem + 20px) / 2 );
+    padding: 10px 10px;
     font-size: 1.2rem;
     font-weight: bold;
     border-radius: 5px 0 0 5px;
@@ -80,8 +98,8 @@ h1 {
     top: 0;
     height: 0;
     width: 0;
-    border: calc((1.2rem + 10px) / 2) solid transparent;
-    border-left: calc((1.2rem + 10px) / 2) solid #fcfcfc;
+    border: calc((1.2rem + 20px) / 2) solid transparent;
+    border-left: calc((1.2rem + 20px) / 2) solid #fcfcfc;
 
 }
 .header__stageNavigation > ul > li > ol {
