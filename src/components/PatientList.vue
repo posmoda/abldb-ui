@@ -12,8 +12,8 @@
                     <td><a v-on:click="goBaseline(patient.patientSerialNumber)">入力</a></td>
                     <td><a v-on:click="goFirstAblation(patient.patientSerialNumber)" v-bind:class="[patient.firstAblationId ? '' : 'notice' ]"><span v-if="patient.firstAblationId">入力あり</span><span v-else>新規入力</span></a></td>
                     <td v-if="patient.firstAblationId === null"></td>
-                    <td v-else-if="patient.internalMedicineId"><router-link :to="{name: 'AblationMedication', params: {medicationId: patient.internalMedicineId}}">入力あり</router-link></td>
-                    <td v-else><a class="notice" v-on:click="createFirstAblMedication(patient.firstAblationId)">新規入力</a></td>
+                    <td v-else-if="patient.internalMedicineId"><a v-on:click="goFirstAblMedication(patient.patientSerialNumber, patient.internalMedicineId)">入力あり</a></td>
+                    <td v-else><a class="notice" v-on:click="createFirstAblMedication(patient.patientSerialNumber, patient.firstAblationId)">新規入力</a></td>
                     <td>
                         <ol class="followingAblList">
                             <li v-for="(ablation, index) in patient.followingAblations" v-bind:key="patient.patientSerialNumber + ablation"><router-link :to="{ name: 'FollowingAblation', params: { followAblationId: ablation }}">{{ index + 2 }}</router-link></li>
@@ -61,11 +61,19 @@ export default {
             this.$store.dispatch( 'updatePatientIdAction' );
             this.$router.push( 'first_ablation', true, false );
         },
-        createFirstAblMedication(firstAblId) {
+        goFirstAblMedication( patientId, medicationId ){
+            console.log( 'pt id is' + patientId );
+            this.$store.commit( 'UPDATE_PATIENT_ID', patientId );
+            this.$store.dispatch( 'updatePatientIdAction' );
+            this.$router.push({ name: 'AblationMedication', params: { medicationId: medicationId } });
+        },
+        createFirstAblMedication( patientId, firstAblId ) {
+            this.$store.commit( 'UPDATE_PATIENT_ID', patientId );
+            this.$store.dispatch( 'updatePatientIdAction' );
             this.axios.get( this.$store.getters.apiRoot + '/1st-abl/' + firstAblId + '/medication_id'
             ).then(( response ) => {
-                const medId = response.data
-                this.$router.push( { name: 'AblationMedication', params: { medicationId: medId } } )
+                const medId = response.data;
+                this.$router.push( { name: 'AblationMedication', params: { medicationId: medId } } );
             });
         },
         openFollowAblModal(patientId) {

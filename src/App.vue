@@ -36,23 +36,27 @@ export default {
                 }
             }
         },
-        refreshContents: function() {
-            console.log( this.$el );
-            const result = {};
-            const contentsSection = this.extractSection( this.extractSection ( this.$el ) );
-            var headerText = ""
-            for ( var item of contentsSection.children ){
-                if ( item.nodeName == "H2" && headerText !== item.innerText ){
-                    headerText = item.innerText;
-                    result[headerText] = [];
+        refreshContents: function( noContents ) {
+            if ( noContents === true ){
+                this.contents = null;
+            } else {
+                console.log( this.$el );
+                const result = {};
+                const contentsSection = this.extractSection( this.extractSection ( this.$el ) );
+                var headerText = ""
+                for ( var item of contentsSection.children ){
+                    if ( item.nodeName == "H2" && headerText !== item.innerText ){
+                        headerText = item.innerText;
+                        result[headerText] = [];
+                    }
+                    if ( item.nodeName == "P" || item.nodeName == "FIELDSET" ){
+                        result[headerText].push(item.children[0].innerText);    
+                    }
                 }
-                if ( item.nodeName == "P" || item.nodeName == "FIELDSET" ){
-                    result[headerText].push(item.children[0].innerText);    
-                }
+                console.log( result );
+                //console.log( this.$el );
+                this.contents = result;
             }
-            console.log( result );
-            //console.log( this.$el );
-            this.contents = result;
         }
     },
     mounted: function() {

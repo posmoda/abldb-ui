@@ -55,6 +55,9 @@ export default {
                 this.$router.push( 'register', true, false );
             });
         }
+    },
+    mounted: function() {
+        this.$emit('pushContents', true)
     }
 }
 </script>
