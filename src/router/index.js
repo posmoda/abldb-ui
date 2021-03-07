@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+//import store from '../store/index'
 
 Vue.use(VueRouter)
 
@@ -11,7 +12,7 @@ const routes = [
     component: Home
   },
   {
-    path: '/register',
+      path: '/register/:patientId',
     name: 'Register',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -19,7 +20,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '@/views/Register.vue')
   },
   {
-    path: '/first_ablation',
+      path: '/first_ablation/:patientId',
     name: 'FirstAblation',
     component: () => import('../views/FirstAblation.vue')
   },
@@ -50,6 +51,11 @@ const router = new VueRouter({
 //    console.log( to );
 //    store.commit('UPDATE_PAGE_CONTENTS', to.name);
 //    next();
+//})
+
+//router.afterEach(() => {
+//    console.log( 'hogegege' );
+//    store.dispatch( 'updatePatientIdAction' );
 //})
 
 export default router

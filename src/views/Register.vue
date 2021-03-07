@@ -22,12 +22,14 @@
         </p>
         <fieldset>
             <legend>AFの種類</legend>
-            <label><input type="radio" name="basic_afKind" id="basic__afKind__paf" value="paf"><span>PAF</span></label>
-            <label><input type="radio" name="basic_afKind" id="basic__afKind__peaf" value="paf"><span>PeAF</span></label>
-            <label><input type="radio" name="basic_afKind" id="basic__afKind__lspeaf" value="paf"><span>LSPeAF</span></label>
+            <label><input type="radio" name="basic_afKind" id="basic__afKind__null" v-bind:value="null" v-model="patient.afKind"><span>なし</span></label>
+            <label><input type="radio" name="basic_afKind" id="basic__afKind__paf" value="paf" v-model="patient.afKind"><span>PAF</span></label>
+            <label><input type="radio" name="basic_afKind" id="basic__afKind__peaf" value="peaf" v-model="patient.afKind"><span>PeAF</span></label>
+            <label><input type="radio" name="basic_afKind" id="basic__afKind__lspeaf" value="lapeaf" v-model="patient.afKind"><span>LSPeAF</span></label>
         </fieldset>
         <fieldset>
             <legend>Modified EHRA Score</legend>
+            <label><input type="radio" name="basic__ehraScore" id="basic__ehraScore__null" v-bind:value="null" v-model="patient.ehraScore"><span>なし</span></label>
             <label><input type="radio" name="basic__ehraScore" id="basic__ehraScore__1" value="1" v-model="patient.ehraScore"><span>1</span></label>
             <label><input type="radio" name="basic__ehraScore" id="basic__ehraScore__2a" value="2a" v-model="patient.ehraScore"><span>2a</span></label>
             <label><input type="radio" name="basic__ehraScore" id="basic__ehraScore__2b" value="2b" v-model="patient.ehraScore"><span>2b</span></label>
@@ -41,13 +43,14 @@
         </fieldset>
         <fieldset>
             <legend>Frality Scale</legend>
-            <label><input type="radio" name="basic__fralityScale" id="1" value="1" v-model.number="patient.fralityScale"><span>1</span></label>
-            <label><input type="radio" name="basic__fralityScale" id="2" value="2" v-model.number="patient.fralityScale"><span>2</span></label>
-            <label><input type="radio" name="basic__fralityScale" id="3" value="3" v-model.number="patient.fralityScale"><span>3</span></label>
-            <label><input type="radio" name="basic__fralityScale" id="4" value="4" v-model.number="patient.fralityScale"><span>4</span></label>
-            <label><input type="radio" name="basic__fralityScale" id="5" value="5" v-model.number="patient.fralityScale"><span>5</span></label>
-            <label><input type="radio" name="basic__fralityScale" id="6" value="6" v-model.number="patient.fralityScale"><span>6</span></label>
-            <label><input type="radio" name="basic__fralityScale" id="7" value="7" v-model.number="patient.fralityScale"><span>7</span></label>
+            <label><input type="radio" name="basic__fralityScale" id="basic__fralityScale__null" v-bind:value="null" v-model.number="patient.fralityScale"><span>なし</span></label>
+            <label><input type="radio" name="basic__fralityScale" id="basic__fralityScale__1" value="1" v-model.number="patient.fralityScale"><span>1</span></label>
+            <label><input type="radio" name="basic__fralityScale" id="basic__fralityScale__2" value="2" v-model.number="patient.fralityScale"><span>2</span></label>
+            <label><input type="radio" name="basic__fralityScale" id="basic__fralityScale__3" value="3" v-model.number="patient.fralityScale"><span>3</span></label>
+            <label><input type="radio" name="basic__fralityScale" id="basic__fralityScale__4" value="4" v-model.number="patient.fralityScale"><span>4</span></label>
+            <label><input type="radio" name="basic__fralityScale" id="basic__fralityScale__5" value="5" v-model.number="patient.fralityScale"><span>5</span></label>
+            <label><input type="radio" name="basic__fralityScale" id="basic__fralityScale__6" value="6" v-model.number="patient.fralityScale"><span>6</span></label>
+            <label><input type="radio" name="basic__fralityScale" id="basic__fralityScale__7" value="7" v-model.number="patient.fralityScale"><span>7</span></label>
         </fieldset>
         </section>
         <section class="register__ecg">
@@ -72,6 +75,7 @@
         </p>
         <fieldset>
             <legend>SSS</legend>
+            <label><input type="radio" name="ecg__sss" id="ecg__sss__null" v-bind:value="null" v-model.number="patient.sss"><span>なし</span></label>
             <label><input type="radio" name="ecg__sss" id="ecg__sss__1" value="1" v-model.number="patient.sss"><span>I型</span></label>
             <label><input type="radio" name="ecg__sss" id="ecg__sss__2" value="2" v-model.number="patient.sss"><span>II型</span></label>
             <label><input type="radio" name="ecg__sss" id="ecg__sss__3" value="3" v-model.number="patient.sss"><span>III型</span></label>
@@ -96,15 +100,15 @@
         </p>
         <p class="form__row">
             <label for="ecg__afImmobilize">AF固定時期</label>
-            <input type="date" name="basic__birthday" id="basic__birthday" v-model="patient.birthday">
+            <input type="date" name="basic__birthday" id="basic__birthday" v-model="patient.afImmobilizedOn">
         </p>
         </section>
         <section class="register__history">
             <h2>既往歴</h2>
             <fieldset>
                 <legend>Maze歴</legend>
-                <label><input type="radio" name="history__maze" id="history__maze__true" v-bind:v-bind:value="true" v-model="patient.maze"><span>あり</span></label>
-                <label><input type="radio" name="history__maze" id="history__maze__false" v-bind:v-bind:value="false" v-model="patient.maze"><span>なし</span></label>
+                <label><input type="radio" name="history__maze" id="history__maze__true" v-bind:value="true" v-model="patient.maze"><span>あり</span></label>
+                <label><input type="radio" name="history__maze" id="history__maze__false" v-bind:value="false" v-model="patient.maze"><span>なし</span></label>
             </fieldset>
             <fieldset>
                 <legend>開心術後</legend>
@@ -277,6 +281,10 @@
                 <input type="number" step="0.1" name="blood__egfr" id="blood__egfr" v-model="patient.egfr">
             </p>
             <p class="form__row">
+                <label for="blood__Ccr">Ccr</label>
+                <input type="number" step="0.1" name="blood__ccr" id="blood__ccr" v-model="patient.ccr">
+            </p>
+            <p class="form__row">
                 <label for="blood__ntProBnp">NT-proBNP</label>
                 <input type="number" step="0.1" name="blood__ntProBnp" id="blood__ntProBnp" v-model="patient.ntProBnp">
             </p>
@@ -334,7 +342,7 @@ export default {
         },
         updateBaseline: function(){
             this.axios.post( 
-                this.$store.getters.apiRoot + '/baseline/' + this.$store.getters.patientId,
+                this.$store.getters.apiRoot + '/baseline/' + this.$route.params.patientId,//this.$store.getters.patientId,
                 this.patient
             ).then(( response ) => {
                 if( response.status == 200 ){
@@ -345,7 +353,7 @@ export default {
             });
         },
         getBaseline: function(){
-            this.axios.get( this.$store.getters.apiRoot + '/baseline/' + this.$store.getters.patientId
+            this.axios.get( this.$store.getters.apiRoot + '/baseline/' + this.$route.params.patientId//this.$store.getters.patientId
             ).then(( response ) => {
                 this.patient = response.data;
             })

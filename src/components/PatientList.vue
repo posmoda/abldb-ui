@@ -54,15 +54,14 @@ export default {
         goBaseline(number) {
             this.$store.commit( 'UPDATE_PATIENT_ID', number );
             this.$store.dispatch( 'updatePatientIdAction' );
-            this.$router.push( 'register', true, false );
+            this.$router.push({ name: 'Register', params: { patientId: number }});
         },
         goFirstAblation( number ) {
             this.$store.commit( 'UPDATE_PATIENT_ID', number );
             this.$store.dispatch( 'updatePatientIdAction' );
-            this.$router.push( 'first_ablation', true, false );
+            this.$router.push({ name: 'FirstAblation', params: { patientId: number } });
         },
         goFirstAblMedication( patientId, medicationId ){
-            console.log( 'pt id is' + patientId );
             this.$store.commit( 'UPDATE_PATIENT_ID', patientId );
             this.$store.dispatch( 'updatePatientIdAction' );
             this.$router.push({ name: 'AblationMedication', params: { medicationId: medicationId } });

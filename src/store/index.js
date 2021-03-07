@@ -50,7 +50,6 @@ export default new Vuex.Store({
     getters,
     actions: {
         async updatePatientIdAction( context ) {
-            console.log("unko")
             var currentPatient = {}
         await axios
         .get( context.state.apiRoot + '/patients/' + context.state.patientNumber )

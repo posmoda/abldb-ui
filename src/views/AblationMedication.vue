@@ -27,8 +27,8 @@
             </fieldset>
             <fieldset>
                 <legend>Thienopyridine</legend>
-                <label><input type="radio" name="medication__thenopyridine" id="medication__thenopyridine__true" v-bind:value="true" v-model="ablationMedication.thenopyridine"><span>はい</span></label>
-                <label><input type="radio" name="medication__thenopyridine" id="medication__thenopyridine__false" v-bind:value="false" v-model="ablationMedication.thenopyridine"><span>いいえ</span></label>
+                <label><input type="radio" name="medication__thienopyridine" id="medication__thienopyridine__true" v-bind:value="true" v-model="ablationMedication.thienopyridine"><span>はい</span></label>
+                <label><input type="radio" name="medication__thienopyridine" id="medication__thienopyridine__false" v-bind:value="false" v-model="ablationMedication.thienopyridine"><span>いいえ</span></label>
             </fieldset>
             <fieldset>
                 <legend>Prasugurel</legend>
@@ -82,8 +82,8 @@
             </fieldset>
             <fieldset>
                 <legend>Bepridil</legend>
-                <label><input type="radio" name="medication__bepridlil" id="medication__bepridlil__true" v-bind:value="true" v-model="ablationMedication.bepridlil"><span>はい</span></label>
-                <label><input type="radio" name="medication__bepridlil" id="medication__bepridlil__false" v-bind:value="false" v-model="ablationMedication.bepridlil"><span>いいえ</span></label>
+                <label><input type="radio" name="medication__bepridil" id="medication__bepridil__true" v-bind:value="true" v-model="ablationMedication.bepridil"><span>はい</span></label>
+                <label><input type="radio" name="medication__bepridil" id="medication__bepridil__false" v-bind:value="false" v-model="ablationMedication.bepridil"><span>いいえ</span></label>
             </fieldset>
             <fieldset>
                 <legend>ARB</legend>

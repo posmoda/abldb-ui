@@ -3,6 +3,10 @@
         <h1>初回アブレーション </h1>
         <section class="firstAblation__content">
             <h2>アブレーションの内容</h2>
+        <p class="form__row">
+            <label for="content__date">施行日</label>
+            <input type="date" name="content__date" id="content__date" v-model="firstAblation.date">
+        </p>
             <fieldset>
                 <legend>3D system</legend>
                 <label><input type="radio" name="content__threedSystem" id="content__threedSystem__carto" value="CARTO" v-model="firstAblation.threedSystem"><span>CARTO</span></label>
@@ -95,12 +99,12 @@
             </fieldset>
             <p class="form__row">
                 <label for="content__nonPvFociPlace">Non-PV Foci 場所</label>
-                <input type="text" name="content__nonPvFociPlace" id="content__nonPvFociPlace" v-model="firstAblation.nonPvFocePlace">
+                <input type="text" name="content__nonPvFociPlace" id="content__nonPvFociPlace" v-model="firstAblation.nonPvFociPlace">
             </p>
             <fieldset>
                 <legend>Low voltage ablation</legend>
-                <label><input type="radio" name="content__lowValtageAbl" id="content__lowValtageAbl__true" v-bind:value="true" v-model="firstAblation.lowValtageAbl"><span>あり</span></label>
-                <label><input type="radio" name="content__lowValtageAbl" id="content__lowValtageAbl__false" v-bind:value="false" v-model="firstAblation.lowValtageAbl"><span>なし</span></label>
+                <label><input type="radio" name="content__lowVoltageAbl" id="content__lowVoltageAbl__true" v-bind:value="true" v-model="firstAblation.lowVoltageAbl"><span>あり</span></label>
+                <label><input type="radio" name="content__lowVoltageAbl" id="content__lowVoltageAbl__false" v-bind:value="false" v-model="firstAblation.lowVoltageAbl"><span>なし</span></label>
             </fieldset>
             <fieldset>
                 <legend>LA CFAE</legend>
@@ -139,6 +143,11 @@
                 <label><input type="radio" name="content__completedRoofLine" id="content__completedRoofLine__false" v-bind:value="false" v-model="firstAblation.completedRoofLine"><span>なし</span></label>
             </fieldset>
             <fieldset>
+                <legend>Bottom Line (非BOX例)</legend>
+                <label><input type="radio" name="content__bottomLine" id="content__bottomLine__true" v-bind:value="true" v-model="firstAblation.bottomLine"><span>あり</span></label>
+                <label><input type="radio" name="content__bottomLine" id="content__bottomLine__false" v-bind:value="false" v-model="firstAblation.bottomLine"><span>なし</span></label>
+            </fieldset>
+            <fieldset>
                 <legend>Bottom Line 完成</legend>
                 <label><input type="radio" name="content__completedBottomLine" id="content__completedBottomLine__true" v-bind:value="true" v-model="firstAblation.completedBottomLine"><span>あり</span></label>
                 <label><input type="radio" name="content__completedBottomLine" id="content__completedBottomLine__false" v-bind:value="false" v-model="firstAblation.completedBottomLine"><span>なし</span></label>
@@ -175,8 +184,8 @@
             </fieldset>
             <fieldset>
                 <legend>CTI 施行済</legend>
-                <label><input type="radio" name="content__pastPvi" id="content__pastPvi__true" v-bind:value="true" v-model="firstAblation.pastPvi"><span>あり</span></label>
-                <label><input type="radio" name="content__pastPvi" id="content__pastPvi__false" v-bind:value="false" v-model="firstAblation.pastPvi"><span>なし</span></label>
+                <label><input type="radio" name="content__pastCti" id="content__pastCti__true" v-bind:value="true" v-model="firstAblation.pastCti"><span>あり</span></label>
+                <label><input type="radio" name="content__pastCti" id="content__pastCti__false" v-bind:value="false" v-model="firstAblation.pastCti"><span>なし</span></label>
             </fieldset>
             <fieldset>
                 <legend>CB-PVI</legend>
@@ -203,9 +212,14 @@
                 <label><input type="radio" name="content__hotPvi" id="content__hotPvi__true" v-bind:value="true" v-model="firstAblation.hotPvi"><span>あり</span></label>
                 <label><input type="radio" name="content__hotPvi" id="content__hotPvi__false" v-bind:value="false" v-model="firstAblation.hotPvi"><span>なし</span></label>
             </fieldset>
+            <fieldset>
+                <legend>その他</legend>
+                <label><input type="radio" name="content__other" id="content__other__true" v-bind:value="true" v-model="firstAblation.other"><span>あり</span></label>
+                <label><input type="radio" name="content__other" id="content__other__false" v-bind:value="false" v-model="firstAblation.other"><span>なし</span></label>
+            </fieldset>
             <p class="form__row">
-                <label for="content__other">その他</label>
-                <input type="text" name="content__other" id="content__other" v-model="firstAblation.other">
+                <label for="content__otherDetail">その他</label>
+                <input type="text" name="content__otherDetail" id="content__otherDetail" v-model="firstAblation.otherDetail">
             </p>
             <h3>手技開始時AF/ATの場合</h3>
             <fieldset>
@@ -225,8 +239,8 @@
             </fieldset>
             <fieldset>
                 <legend>術中に抗不整脈薬を使用</legend>
-                <label><input type="radio" name="content__antiarthythmia" id="content__antiarthythmia__true" v-bind:value="true" v-model="firstAblation.antiarthythmia"><span>あり</span></label>
-                <label><input type="radio" name="content__antiarthythmia" id="content__antiarthythmia__false" v-bind:value="false" v-model="firstAblation.antiarthythmia"><span>なし</span></label>
+                <label><input type="radio" name="content__antiarrhythmia" id="content__antiarrhythmia__true" v-bind:value="true" v-model="firstAblation.antiarrhythmia"><span>あり</span></label>
+                <label><input type="radio" name="content__antiarrhythmia" id="content__antiarrhythmia__false" v-bind:value="false" v-model="firstAblation.antiarrhythmia"><span>なし</span></label>
             </fieldset>
             <h3>Induction test を施行</h3>
             <fieldset>
@@ -253,12 +267,12 @@
                 <label><input type="radio" name="complex__deathByOpe" id="complex__deathByOpe__false" v-bind:value="false" v-model="firstAblation.deathByOpe"><span>なし</span></label>
             </fieldset>
             <p class="form__row">
-                <label for="complex__other">死亡年月日</label>
-                <input type="date" name="complex__other" id="complex__other" v-model="firstAblation.other">
+                <label for="complex__deathOn">死亡年月日</label>
+                <input type="date" name="complex__deathOn" id="complex__deathOn" v-model="firstAblation.deathOn">
             </p>
             <p class="form__row">
-                <label for="complex__other">死亡原因</label>
-                <input type="text" name="complex__other" id="complex__other" v-model="firstAblation.other">
+                <label for="complex__reasonOfDeath">死亡原因</label>
+                <input type="text" name="complex__reasonOfDeath" id="complex__reasonOfDeath" v-model="firstAblation.reasonOfDeath">
             </p>
             <fieldset>
                 <legend>穿刺を要した心嚢水貯留</legend>
@@ -302,7 +316,7 @@
             </fieldset>
             <p class="form__row">
                 <label for="complex__other">その他の血栓塞栓症部位</label>
-                <input type="text" name="complex__other" id="complex__other" v-model="firstAblation.other">
+                <input type="text" name="complex__otherEmbolismPart" id="complex__otherEmbolismPart" v-model="firstAblation.otherEmbolismPart">
             </p>
             <fieldset>
                 <legend>空気塞栓症</legend>
@@ -475,7 +489,7 @@ export default {
     methods: {
         updateFirstAblation: function() {
             this.axios.post( 
-                this.$store.getters.apiRoot + '/1st-abl/' + this.$store.getters.patientId,
+                this.$store.getters.apiRoot + '/1st-abl/' + this.$route.params.patientId, //this.$store.getters.patientId,
                 this.firstAblation
             ).then(( response ) => {
                 if( response.status == 200 ){
@@ -486,9 +500,10 @@ export default {
             });
         },
         getFirstAblation: function() {
-            this.axios.get( this.$store.getters.apiRoot + '/1st-abl/' + this.$store.getters.patientId
+            this.axios.get( this.$store.getters.apiRoot + '/1st-abl/' + this.$route.params.patientId //this.$store.getters.patientId
             ).then(( response ) => {
                 this.firstAblation = response.data;
+                this.$store.dispatch('updatePatientIdAction');
             })
         }
     },
@@ -498,6 +513,8 @@ export default {
     },
     beforeUpdate: function() {
         this.updateFirstAblation();
+    },
+    destroyed: function() {
     }
 }
 </script>

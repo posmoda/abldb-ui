@@ -3,8 +3,8 @@
         <section class="header__stageNavigation">
             <ul>
                 <li><router-link to="/">症例一覧</router-link></li>
-                <li><a v-on:click="openBaseline">ベースライン</a></li>
-                <li><a v-on:click="openFirstAbl">初回ABL</a></li>
+                <li><a v-on:click="openBaseline(currentPatient.patientSerialNumber)">ベースライン</a></li>
+                <li><a v-on:click="openFirstAbl(currentPatient.patientSerialNumber)">初回ABL</a></li>
                 <li>
                     <a v-if="currentPatient.firstAblationId === null" class="invalid">初回ABL処方</a>
                     <a v-else-if="currentPatient.internalMedicineId" v-on:click="openFirstAblMed(currentPatient.internalMedicineId)">初回ABL処方</a>
@@ -32,11 +32,12 @@ import Mixin from '@/mixins/mixin'
 export default {
     name: 'Header',
     methods: {
-        openBaseline() {
-            this.$router.push( 'register', true, false );
+        openBaseline( id ) {
+            this.$router.push({ name: 'Register', params: { patientId: id } });
         },
-        openFirstAbl() {
-            this.$router.push( 'first_ablation', true, false );
+        openFirstAbl(id) {
+            this.$router.push({ name: 'FirstAblation', params: { patientId: id } });
+            //this.$store.dispatch( 'updatePatientIdAction' );
         },
         openFirstAblMed(id) {
             this.$router.push({ name: 'AblationMedication', params: { medicationId: id } })
