@@ -40,17 +40,27 @@ export default {
             if ( noContents === true ){
                 this.contents = null;
             } else {
-                console.log( this.$el );
-                const result = {};
-                const contentsSection = this.extractSection( this.extractSection ( this.$el ) );
-                var headerText = ""
-                for ( var item of contentsSection.children ){
-                    if ( item.nodeName == "H2" && headerText !== item.innerText ){
-                        headerText = item.innerText;
-                        result[headerText] = [];
+                //console.log( this.$el );
+                var result = {};
+                var preContentSection = this.extractSection( this.$el );
+                var contentsSection = []
+                for ( const element of preContentSection.children ){
+                    if ( element.nodeName == 'SECTION' ){
+                        contentsSection.push( element );        
                     }
-                    if ( item.nodeName == "P" || item.nodeName == "FIELDSET" ){
-                        result[headerText].push(item.children[0].innerText);    
+                }
+                //console.log( contentsSection );
+                var headerText = ""
+                for ( var item of contentsSection ){
+                    for ( var child of item.children ){
+                        if ( child.nodeName == "H2" && headerText !== child.innerText ){
+                            headerText = child.innerText;
+                            result[headerText] = {};
+                        }
+                        if ( child.nodeName == "P" || child.nodeName == "FIELDSET" ){
+                            result[headerText][child.children[0].innerText] = 'hoge';    
+                            console.log( child );
+                        }        
                     }
                 }
                 console.log( result );
@@ -60,9 +70,9 @@ export default {
         }
     },
     mounted: function() {
-        this.$nextTick(function() {
+        //this.$nextTick(function() {
             this.refreshContents();
-        })
+        //})
     },
     //router.beforeEach( function ( to, from, next ) ) {
     //    console.log( 'route?' )
@@ -108,7 +118,9 @@ header h1 {
 h1 {
     margin: 0;
     margin-top: 2.5em;
+    padding-left: 0.5em;
     font-size: 2.5rem;
+    border-bottom: 6px solid #718ca0;
 }
 .pageInformation h1 {
 }

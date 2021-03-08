@@ -2,22 +2,22 @@
     <header>
         <section class="header__stageNavigation">
             <ul>
-                <li><router-link to="/">症例一覧</router-link></li>
-                <li><a v-on:click="openBaseline(currentPatient.patientSerialNumber)">ベースライン</a></li>
-                <li><a v-on:click="openFirstAbl(currentPatient.patientSerialNumber)">初回ABL</a></li>
-                <li>
+                <li :class="($route.name === 'Home') ? 'current' : ''"><router-link to="/">症例一覧</router-link></li>
+                <li :class="($route.name === 'Register') ? 'current' : ''"><a v-on:click="openBaseline(currentPatient.patientSerialNumber)">ベースライン</a></li>
+                <li :class="($route.name === 'FirstAblation') ? 'current' : ''"><a v-on:click="openFirstAbl(currentPatient.patientSerialNumber)">初回ABL</a></li>
+                <li :class="($route.name === 'AblationMedication') ? 'current' : ''">
                     <a v-if="currentPatient.firstAblationId === null" class="invalid">初回ABL処方</a>
                     <a v-else-if="currentPatient.internalMedicineId" v-on:click="openFirstAblMed(currentPatient.internalMedicineId)">初回ABL処方</a>
                     <a v-else v-on:click="createFirstAblMedication(currentPatient.firstAblationId)">初回ABL処方</a>
                 </li>
-                <li>
+                <li :class="($route.name === 'FollowingAblation') ? 'current' : ''">
                     追加ABL
                     <ol>
                         <li v-for="(ablationId, index) in currentPatient.followingAblations" v-bind:key="ablationId"><a v-on:click="openFollowAbl(ablationId)">{{index + 2}}回目</a></li>
                         <li v-on:click="requestFollowAblation">新規ABL</li>
                     </ol>
                 </li>
-                <li>
+                <li class="invalid">
                     フォロー外来
                     <ol>
                         <li>hoge</li>
@@ -91,6 +91,11 @@ header {
     font-weight: bold;
     border-radius: 5px 0 0 5px;
 }
+.header__stageNavigation > ul > li.current,
+.header__stageNavigation > ul > li.current:hover > ol {
+    background-color: #e26061;
+    color: #fcfcfc;
+}
 .header__stageNavigation > ul > li:after {
     content: "";
     display: block;
@@ -103,6 +108,16 @@ header {
     border-left: calc((1.2rem + 20px) / 2) solid #fcfcfc;
 
 }
+.header__stageNavigation > ul > li:last-child {
+    border-radius: 5px;
+}
+.header__stageNavigation > ul > li:last-child:after {
+    display: none;
+}
+.header__stageNavigation > ul > li.current:after {
+    border-left: calc((1.2rem + 20px) / 2) solid #e26061;
+}
+
 .header__stageNavigation > ul > li > ol {
     display: none;
     list-style: none;
@@ -112,8 +127,10 @@ header {
     display: block;
     position: absolute;
     left: 0;
+    top: calc( 100% - 5px );
     width: auto;
     padding: 0;
+    padding-top: 5px;
     background-color: #fcfcfc;
     border-radius: 0 0 5px 5px;
 }

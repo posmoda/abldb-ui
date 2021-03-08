@@ -27,7 +27,7 @@
                 <ul>
                     <li v-for="(items, chapter) in contents" :key="chapter">{{ chapter }}
                         <ul>
-                            <li v-for="item in items" :key="item.key">{{ item }}</li>
+                            <li v-for="(id, item) in items" :key="item.key">{{ item }}</li>
                         </ul>
                     </li>
                 </ul>
@@ -75,9 +75,10 @@ h1 a:visited {
 div.sticky {
     margin: 0;
     position: sticky;
-    top: 20px;
+    top: 0;
     z-index: 10;
     background-color: #718ca0;
+    padding-top: 20px;
     padding-bottom: 5px;
 }
 div.pageInformation {
