@@ -21,14 +21,14 @@
                 <label for="ucg__lad">LAD</label>
                 <input type="number" step="1" name="ucg__lad" id="ucg__lad" v-model="ucg.lad">
             </p>
-            <p class="form__row">
+            <!--<p class="form__row">
                 <label for="ucg__laDiameterVertical">LA径 (4C縦)</label>
                 <input type="number" step="1" name="ucg__laDiameterVertical" id="ucg__laDiameterVertical" v-model="ucg.laDiameterVertical">
             </p>
             <p class="form__row">
                 <label for="ucg__laDiameterHorizontal">LA径 (4C横)</label>
                 <input type="number" step="1" name="ucg__laDiameterHorizontal" id="ucg__laDiameterHorizontal" v-model="ucg.laDiameterHorizontal">
-            </p>
+            </p>-->
             <fieldset>
                 <legend>MR（４段階）</legend>
                 <label><input type="radio" name="ucg__mr4grades" id="ucg__mr4grades__null" v-bind:value="null" v-model="ucg.mr4grades"><span>なし</span></label>
@@ -37,14 +37,14 @@
                 <label><input type="radio" name="ucg__mr4grades" id="ucg__mr4grades__3" value="3" v-model.number="ucg.mr4grades"><span>3</span></label>
                 <label><input type="radio" name="ucg__mr4grades" id="ucg__mr4grades__4" value="4" v-model.number="ucg.mr4grades"><span>4</span></label>
             </fieldset>
-            <fieldset>
+            <!--<fieldset>
                 <legend>MR（３段階）</legend>
                 <label><input type="radio" name="ucg__mr3grades" id="ucg__mr3grades__null" v-bind:value="null" v-model="ucg.mr3grades"><span>なし</span></label>
                 <label><input type="radio" name="ucg__mr3grades" id="ucg__mr3grades__1" value="1" v-model.number="ucg.mr3grades"><span>trivial</span></label>
                 <label><input type="radio" name="ucg__mr3grades" id="ucg__mr3grades__2" value="2" v-model.number="ucg.mr3grades"><span>mild</span></label>
                 <label><input type="radio" name="ucg__mr3grades" id="ucg__mr3grades__3" value="3" v-model.number="ucg.mr3grades"><span>moderate</span></label>
                 <label><input type="radio" name="ucg__mr3grades" id="ucg__mr3grades__4" value="4" v-model.number="ucg.mr3grades"><span>severe</span></label>
-            </fieldset>
+            </fieldset>-->
             <p class="form__row">
                 <label for="ucg__eE">E/E'</label>
                 <input type="number" step="0.1" name="ucg__eE" id="ucg__eE" v-model="ucg.eE">
@@ -69,14 +69,14 @@
                 <label><input type="radio" name="ucg__ar4grades" id="ucg__ar4grades__3" value="3" v-model.number="ucg.ar4grades"><span>3</span></label>
                 <label><input type="radio" name="ucg__ar4grades" id="ucg__ar4grades__4" value="4" v-model.number="ucg.ar4grades"><span>4</span></label>
             </fieldset>
-            <fieldset>
+            <!--<fieldset>
                 <legend>AR（３段階）</legend>
                 <label><input type="radio" name="ucg__ar3grades" id="ucg__ar3grades__null" v-bind:value="null" v-model="ucg.ar3grades"><span>なし</span></label>
                 <label><input type="radio" name="ucg__ar3grades" id="ucg__ar3grades__1" value="1" v-model.number="ucg.ar3grades"><span>trivial</span></label>
                 <label><input type="radio" name="ucg__ar3grades" id="ucg__ar3grades__2" value="2" v-model.number="ucg.ar3grades"><span>mild</span></label>
                 <label><input type="radio" name="ucg__ar3grades" id="ucg__ar3grades__3" value="3" v-model.number="ucg.ar3grades"><span>moderate</span></label>
                 <label><input type="radio" name="ucg__ar3grades" id="ucg__ar3grades__4" value="4" v-model.number="ucg.ar3grades"><span>severe</span></label>
-            </fieldset>
+            </fieldset>-->
             <fieldset>
                 <legend>TR（４段階）</legend>
                 <label><input type="radio" name="ucg__tr4grades" id="ucg__tr4grades__null" v-bind:value="null" v-model="ucg.tr4grades"><span>なし</span></label>
@@ -85,33 +85,27 @@
                 <label><input type="radio" name="ucg__tr4grades" id="ucg__tr4grades__3" value="3" v-model.number="ucg.tr4grades"><span>3</span></label>
                 <label><input type="radio" name="ucg__tr4grades" id="ucg__tr4grades__4" value="4" v-model.number="ucg.tr4grades"><span>4</span></label>
             </fieldset>
-            <fieldset>
+            <!--<fieldset>
                 <legend>TR（３段階）</legend>
                 <label><input type="radio" name="ucg__tr3grades" id="ucg__tr3grades__null" v-bind:value="null" v-model="ucg.tr3grades"><span>なし</span></label>
                 <label><input type="radio" name="ucg__tr3grades" id="ucg__tr3grades__1" value="1" v-model.number="ucg.tr3grades"><span>trivial</span></label>
                 <label><input type="radio" name="ucg__tr3grades" id="ucg__tr3grades__2" value="2" v-model.number="ucg.tr3grades"><span>mild</span></label>
                 <label><input type="radio" name="ucg__tr3grades" id="ucg__tr3grades__3" value="3" v-model.number="ucg.tr3grades"><span>moderate</span></label>
                 <label><input type="radio" name="ucg__tr3grades" id="ucg__tr3grades__4" value="4" v-model.number="ucg.tr3grades"><span>severe</span></label>
-            </fieldset>
+            </fieldset>-->
             <p class="form__row">
                 <label for="ucg__trPg">TR-PG</label>
                 <input type="number" step="1" name="ucg__trPg" id="ucg__trPg" v-model="ucg.trPg">
             </p>
             <fieldset>
-                <legend>MS</legend>
-                <label><input type="radio" name="ucg__ms3grades" id="ucg__ms3grades__null" v-bind:value="null" v-model="ucg.ms3grades"><span>なし</span></label>
-                <label><input type="radio" name="ucg__ms3grades" id="ucg__ms3grades__1" value="1" v-model.number="ucg.ms3grades"><span>trivial</span></label>
-                <label><input type="radio" name="ucg__ms3grades" id="ucg__ms3grades__2" value="2" v-model.number="ucg.ms3grades"><span>mild</span></label>
-                <label><input type="radio" name="ucg__ms3grades" id="ucg__ms3grades__3" value="3" v-model.number="ucg.ms3grades"><span>moderate</span></label>
-                <label><input type="radio" name="ucg__ms3grades" id="ucg__ms3grades__4" value="4" v-model.number="ucg.ms3grades"><span>severe</span></label>
+                <legend>moderate以上のMS</legend>
+                <label><input type="radio" name="ucg__ms" id="ucg__ms__true" v-bind:value="true" v-model="ucg.ms"><span>あり</span></label>
+                <label><input type="radio" name="ucg__ms" id="ucg__ms__false" v-bind:value="false" v-model="ucg.ms"><span>なし</span></label>
             </fieldset>
             <fieldset>
-                <legend>AS（３段階）</legend>
-                <label><input type="radio" name="ucg__as3grades" id="ucg__as3grades__null" v-bind:value="null" v-model="ucg.as3grades"><span>なし</span></label>
-                <label><input type="radio" name="ucg__as3grades" id="ucg__as3grades__1" value="1" v-model.number="ucg.as3grades"><span>trivial</span></label>
-                <label><input type="radio" name="ucg__as3grades" id="ucg__as3grades__2" value="2" v-model.number="ucg.as3grades"><span>mild</span></label>
-                <label><input type="radio" name="ucg__as3grades" id="ucg__as3grades__3" value="3" v-model.number="ucg.as3grades"><span>moderate</span></label>
-                <label><input type="radio" name="ucg__as3grades" id="ucg__as3grades__4" value="4" v-model.number="ucg.as3grades"><span>severe</span></label>
+                <legend>moderate以上のAS</legend>
+                <label><input type="radio" name="ucg__as" id="ucg__as__true" v-bind:value="true" v-model="ucg.as"><span>あり</span></label>
+                <label><input type="radio" name="ucg__as" id="ucg__as__false" v-bind:value="false" v-model="ucg.as"><span>なし</span></label>
             </fieldset>
             <h2>TEE</h2>
             <fieldset>

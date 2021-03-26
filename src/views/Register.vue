@@ -28,6 +28,11 @@
             <label><input type="radio" name="basic_afKind" id="basic__afKind__lspeaf" value="lapeaf" v-model="patient.afKind"><span>LSPeAF</span></label>
         </fieldset>
         <fieldset>
+            <legend>RFCA or CB</legend>
+            <label><input type="radio" name="basic__rfcaCb" id="basic__rfcaCb__a" value="A" v-model="patient.rfcaCb"><span>A</span></label>
+            <label><input type="radio" name="basic__rfcaCb" id="basic__rfcaCb__cryo" value="Cryo" v-model="patient.rfcaCb"><span>Cryo</span></label>
+        </fieldset>
+        <fieldset>
             <legend>Modified EHRA Score</legend>
             <label><input type="radio" name="basic__ehraScore" id="basic__ehraScore__null" v-bind:value="null" v-model="patient.ehraScore"><span>なし</span></label>
             <label><input type="radio" name="basic__ehraScore" id="basic__ehraScore__1" value="1" v-model="patient.ehraScore"><span>1</span></label>
@@ -41,7 +46,7 @@
             <label><input type="radio" name="basic__hasSymptom" id="true" v-bind:value="true" v-model="patient.hasSymptom"><span>あり</span></label>
             <label><input type="radio" name="basic__hasSymptom" id="false" v-bind:value="false" v-model="patient.hasSymptom"><span>なし</span></label>
         </fieldset>
-        <fieldset>
+        <!--<fieldset>
             <legend>Frality Scale</legend>
             <label><input type="radio" name="basic__fralityScale" id="basic__fralityScale__null" v-bind:value="null" v-model.number="patient.fralityScale"><span>なし</span></label>
             <label><input type="radio" name="basic__fralityScale" id="basic__fralityScale__1" value="1" v-model.number="patient.fralityScale"><span>1</span></label>
@@ -51,7 +56,7 @@
             <label><input type="radio" name="basic__fralityScale" id="basic__fralityScale__5" value="5" v-model.number="patient.fralityScale"><span>5</span></label>
             <label><input type="radio" name="basic__fralityScale" id="basic__fralityScale__6" value="6" v-model.number="patient.fralityScale"><span>6</span></label>
             <label><input type="radio" name="basic__fralityScale" id="basic__fralityScale__7" value="7" v-model.number="patient.fralityScale"><span>7</span></label>
-        </fieldset>
+        </fieldset>-->
         </section>
         <section class="register__ecg">
         <h2>入院時 12ch ECG</h2>
@@ -309,12 +314,28 @@
                 <input type="number" step="0.1" name="blood__hb" id="blood__hb" v-model="patient.hb">
             </p>
             <p class="form__row">
+                <label for="blood__hmt">Ht</label>
+                <input type="number" step="1" name="blood__hmt" id="blood__hmt" v-model="patient.hmt">
+            </p>
+            <p class="form__row">
                 <label for="blood__tsh">TSH</label>
                 <input type="number" step="0.1" name="blood__tsh" id="blood__tsh" v-model="patient.tsh">
             </p>
             <p class="form__row">
                 <label for="blood__ft4">FT4</label>
                 <input type="number" step="0.1" name="blood__ft4" id="blood__ft4" v-model="patient.ft4">
+            </p>
+            <p class="form__row">
+                <label for="blood__ast">AST</label>
+                <input type="number" step="1" name="blood__ast" id="blood__ast" v-model="patient.ast">
+            </p>
+            <p class="form__row">
+                <label for="blood__alt">ALT</label>
+                <input type="number" step="1" name="blood__alt" id="blood__alt" v-model="patient.alt">
+            </p>
+            <p class="form__row">
+                <label for="blood__tbil">T-Bil</label>
+                <input type="number" step="0.1" name="blood__tbil" id="blood__tbil" v-model="patient.tbil">
             </p>
         </section>
         <UCG :ucgId="patient.ucgId"></UCG>
