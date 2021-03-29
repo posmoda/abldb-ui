@@ -25,22 +25,6 @@
                 <label><input type="radio" name="content__contrast" id="content__contrast__true" v-bind:value="true" v-model="firstAblation.contrast"><span>あり</span></label>
                 <label><input type="radio" name="content__contrast" id="content__contrast__false" v-bind:value="false" v-model="firstAblation.contrast"><span>なし</span></label>
             </fieldset>
-            <p class="form__row">
-                <label for="content__operationDuration">手技時間(min)</label>
-                <input type="number" step="1" min="0" name="content__operationDuration" id="content__operationDuration" v-model.number="firstAblation.operationDuration">
-            </p>
-            <p class="form__row">
-                <label for="content__perspectiveDuration">透視時間(min)</label>
-                <input type="number" step="1" min="0" name="content__perspectiveDuration" id="content__perspectiveDuration" v-model.number="firstAblation.perspectiveDuration">
-            </p>
-            <p class="form__row">
-                <label for="content__skinDose">皮膚線量(mGv)</label>
-                <input type="number" step="1" min="0" name="content__skinDose" id="content__skinDose" v-model.number="firstAblation.skinDose">
-            </p>
-            <p class="form__row">
-                <label for="content__totalDose">総線量(mGv)</label>
-                <input type="number" step="1" min="0" name="content__totalDose" id="content__totalDose" v-model.number="firstAblation.totalDose">
-            </p>
             <fieldset>
                 <legend>LVZ塊</legend>
                 <label><input type="radio" name="content__lvz" id="content__lvz__true" v-bind:value="true" v-model="firstAblation.lvz"><span>あり</span></label>
