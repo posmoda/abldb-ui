@@ -8,7 +8,7 @@
                 <input type="date" name="followingAblation__date" id="followingAblation__date" v-model="followingAblation.date">
             </p>
         </section>
-        <UCG :ucgId="followingAblation.ucgId"></UCG>
+        <!--<UCG :ucgId="followingAblation.ucgId"></UCG>-->
         <section class="followingAblation__content">
             <h2>Session内容</h2>
             <fieldset>
@@ -18,18 +18,6 @@
                 <label><input type="radio" name="content__threedSystem" id="content__threedSystem__rhythmia" value="Rhythmia" v-model="followingAblation.threedSystem"><span>Rhythmia</span></label>
                 <label><input type="radio" name="content__threedSystem" id="content__threedSystem__none" value="None" v-model="followingAblation.threedSystem"><span>なし</span></label>
             </fieldset>
-            <p class="form__row">
-                <label for="content__leftLowVoltageRatio05v">左房 Low voltage area 割合 (&lt;0.5V)</label>
-                <input type="number" step="0.01" min="0.0" max="1.0" name="content__leftLowVoltageRatio05v" id="content__leftLowVoltageRatio05v" v-model.number="followingAblation.leftLowVoltageRatio05v">
-            </p>
-            <p class="form__row">
-                <label for="content__leftLowVoltageRatio08v">左房 Low voltage area 割合 (&lt;0.8V)</label>
-                <input type="number" step="0.01" min="0.0" max="1.0" name="content__leftLowVoltageRatio08v" id="content__leftLowVoltageRatio08v" v-model.number="followingAblation.leftLowVoltageRatio08v">
-            </p>
-            <p class="form__row">
-                <label for="content__leftLowVoltageRatio05v">左房 Low voltage area 割合 (&lt;1.0V)</label>
-                <input type="number" step="0.01" min="0.0" max="1.0" name="content__leftLowVoltageRatio10v" id="content__leftLowVoltageRatio10v" v-model.number="followingAblation.leftLowVoltageRatio10v">
-            </p>
             <fieldset>
                 <legend>LPV Re-Isolation</legend>
                 <label><input type="radio" name="content__lpvReisolation" id="content__lpvReisolation__true" v-bind:value="true" v-model="followingAblation.lpvReisolation"><span>あり</span></label>
@@ -134,6 +122,18 @@
             <p class="form__row">
                 <label for="content__nonPvFociPlace">Non-PV Foci 場所</label>
                 <input type="text" name="content__nonPvFociPlace" id="content__nonPvFociPlace" v-model="followingAblation.nonPvFociPlace">
+            </p>
+            <p class="form__row">
+                <label for="content__leftLowVoltageRatio05v">左房 Low voltage area 割合 (&lt;0.5V)</label>
+                <input type="number" step="0.01" min="0.0" max="1.0" name="content__leftLowVoltageRatio05v" id="content__leftLowVoltageRatio05v" v-model.number="followingAblation.leftLowVoltageRatio05v">
+            </p>
+            <p class="form__row">
+                <label for="content__leftLowVoltageRatio08v">左房 Low voltage area 割合 (&lt;0.8V)</label>
+                <input type="number" step="0.01" min="0.0" max="1.0" name="content__leftLowVoltageRatio08v" id="content__leftLowVoltageRatio08v" v-model.number="followingAblation.leftLowVoltageRatio08v">
+            </p>
+            <p class="form__row">
+                <label for="content__leftLowVoltageRatio05v">左房 Low voltage area 割合 (&lt;1.0V)</label>
+                <input type="number" step="0.01" min="0.0" max="1.0" name="content__leftLowVoltageRatio10v" id="content__leftLowVoltageRatio10v" v-model.number="followingAblation.leftLowVoltageRatio10v">
             </p>
             <fieldset>
                 <legend>Low voltage ablation</legend>
@@ -344,11 +344,11 @@
     </section>
 </template>
 <script>
-import UCG from '@/components/ucg.vue'
+//import UCG from '@/components/ucg.vue'
 import AblationMedication from '@/views/AblationMedication.vue'
 export default {
     components: {
-        UCG,
+        //UCG,
         AblationMedication
     },
     data() {
