@@ -33,7 +33,12 @@ const routes = [
       path: '/following_ablation/:followAblationId',
     name: 'FollowingAblation',
     component: () => import( /* webpackChunkName: "followingAblation" */ '@/views/FollowingAblation.vue' )
-  }
+  },
+    {
+        path: '/followup',
+        name: 'FollowUp',
+        component: () => import(/* webpackChunkName: "followUp" */ '@/views/FollowUp.vue')
+    }
 ]
 
 const router = new VueRouter({

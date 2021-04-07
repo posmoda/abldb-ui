@@ -63,7 +63,8 @@ export default new Vuex.Store({
     },
     plugins: [createPersistedState(
         {
-            key: 'abldb'
+            key: 'abldb',
+            paths: ['patietnNumber', 'currentPatient', 'loginUser']
         }
     )]
 })

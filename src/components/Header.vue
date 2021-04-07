@@ -18,7 +18,7 @@
                     </ol>
                 </li>
                 <li class="invalid">
-                    フォロー外来
+                    <router-link to="/followup">フォロー外来</router-link>
                     <ol>
                         <li>hoge</li>
                     </ol>
