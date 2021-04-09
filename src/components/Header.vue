@@ -17,12 +17,7 @@
                         <li v-on:click="requestFollowAblation">新規ABL</li>
                     </ol>
                 </li>
-                <li class="invalid">
-                    <router-link to="/followup">フォロー外来</router-link>
-                    <ol>
-                        <li>hoge</li>
-                    </ol>
-                </li>
+                <li :class="($route.name === 'FollowUp') ? 'current' : ''"><a v-on:click="openFollowUp(currentPatient.patientSerialNumber)">フォロー外来</a></li>
             </ul>
         </section>
     </header>
@@ -44,6 +39,9 @@ export default {
         },
         openFollowAbl(id) {
             this.$router.push({ name: 'FollowingAblation', params: { followAblationId: id }})
+        },
+        openFollowUp( id ) {
+            this.$router.push({ name: 'FollowUp', params: { patientId: id } });
         }
     },
     computed: {

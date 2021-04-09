@@ -3,7 +3,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>症例番号</th><th>ベースライン</th><th>初回ABL</th><th>初回ABL処方</th><th>追加ABL</th>
+                    <th>症例番号</th><th>ベースライン</th><th>初回ABL</th><th>初回ABL処方</th><th>追加ABL</th><th>フォローアップ外来</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,6 +20,7 @@
                         </ol>
                         <p><a class="notice" v-on:click="openFollowAblModal(patient.patientSerialNumber)">新規追加</a></p>
                     </td>
+                    <td><a v-on:click="goFollowUp(patient.patientSerialNumber)" v-bind:class="[patient.followUpId ? '' : 'notice']"><span v-if="patient.followUpId">入力あり</span><span v-else>新規入力</span></a></td>
                 </tr>
             </tbody>
         </table>
@@ -65,6 +66,11 @@ export default {
             this.$store.commit( 'UPDATE_PATIENT_ID', patientId );
             this.$store.dispatch( 'updatePatientIdAction' );
             this.$router.push({ name: 'AblationMedication', params: { medicationId: medicationId } });
+        },
+        goFollowUp( patientId ){
+            this.$store.commit( 'UPDATE_PATIENT_ID', patientId );
+            this.$store.dispatch( 'updatePatientIdAction' );
+            this.$router.push({ name: 'FollowUp', params: { patientId: patientId } });
         },
         createFirstAblMedication( patientId, firstAblId ) {
             this.$store.commit( 'UPDATE_PATIENT_ID', patientId );

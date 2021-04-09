@@ -35,6 +35,7 @@ export default new Vuex.Store({
             token: "testToken"
         },
         apiRoot: "http://localhost:5000/api"
+        //apiRoot: "https://www.postmoderns.info/abldb-api"
     },
     mutations: {
         [ types.UPDATE_PATIENT_ID ]( state, patientSerialNumber ){
@@ -64,7 +65,7 @@ export default new Vuex.Store({
     plugins: [createPersistedState(
         {
             key: 'abldb',
-            paths: ['patietnNumber', 'currentPatient', 'loginUser']
+            paths: ['patientNumber', 'currentPatient', 'loginUser']
         }
     )]
 })

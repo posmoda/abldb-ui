@@ -158,6 +158,16 @@ p.form__row, fieldset {
     background-color: #fcfcfc;
     margin: 20px 0;
     border-radius: 10px;
+    transition: transform 0.5s ease;
+}
+p.form__row.hidden,
+fieldset.hidden {
+    transform: scaleY(0);
+    overflow: hidden;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    margin: -10px 0;
 }
 p.form__row {
     margin-top: calc(20px + 0.5em + 5px);

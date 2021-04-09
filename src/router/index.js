@@ -35,7 +35,7 @@ const routes = [
     component: () => import( /* webpackChunkName: "followingAblation" */ '@/views/FollowingAblation.vue' )
   },
     {
-        path: '/followup',
+        path: '/followup/:patientId',
         name: 'FollowUp',
         component: () => import(/* webpackChunkName: "followUp" */ '@/views/FollowUp.vue')
     }
