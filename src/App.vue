@@ -202,7 +202,7 @@ fieldset > label {
     width: 100%;
     position: relative;
     display: flex;
-    align-content: center;
+    align-items: center;
     justify-content: center;
     border: 1px solid #80abb0;
     border-top: 2px solid #80abb0;
@@ -227,15 +227,33 @@ fieldset > label > input {
     z-index: -10;
 }
 fieldset > label > span {
-    display: block;
+    display: flex;
     margin: 0;
     padding: 10px 0;
     width: 100%;
     height: 100%;
     background-color: #dddddd;
+    align-items: center;
+    justify-content: center;
 }
 fieldset > label > input:checked + span {
     background-color: #80abb0;
     color: #fcfcfc;
+}
+fieldset.panel {
+    flex-wrap: wrap;
+    padding: 10px;
+}
+fieldset.panel > label {
+    width: 20%;
+    border-width: 1px;
+}
+fieldset.panel > label:first-of-type {
+    margin-left: 0;
+    border-left-width: 1px;
+}
+fieldset.panel > label:last-of-type {
+    margin-right: 0;
+    border-right-width: 1px;
 }
 </style>

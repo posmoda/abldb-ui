@@ -1,7 +1,7 @@
 <template>
     <header>
         <section class="header__stageNavigation">
-            <ul>
+            <ul :class="{ invalid: !currentPatient.patientSerialNumber }">
                 <li :class="($route.name === 'Home') ? 'current' : ''"><router-link to="/">症例一覧</router-link></li>
                 <li :class="($route.name === 'Register') ? 'current' : ''"><a v-on:click="openBaseline(currentPatient.patientSerialNumber)">ベースライン</a></li>
                 <li :class="($route.name === 'FirstAblation') ? 'current' : ''"><a v-on:click="openFirstAbl(currentPatient.patientSerialNumber)">初回ABL</a></li>
@@ -28,20 +28,30 @@ export default {
     name: 'Header',
     methods: {
         openBaseline( id ) {
-            this.$router.push({ name: 'Register', params: { patientId: id } });
+            if (this.currentPatient.patientSerialNumber) {
+                this.$router.push({ name: 'Register', params: { patientId: id } });        
+            }
         },
         openFirstAbl(id) {
-            this.$router.push({ name: 'FirstAblation', params: { patientId: id } });
-            //this.$store.dispatch( 'updatePatientIdAction' );
+            if (this.currentPatient.patientSerialNumber) {
+                this.$router.push({ name: 'FirstAblation', params: { patientId: id } });
+                //this.$store.dispatch( 'updatePatientIdAction' );
+            }
         },
         openFirstAblMed(id) {
-            this.$router.push({ name: 'AblationMedication', params: { medicationId: id } })
+            if (this.currentPatient.patientSerialNumber) {
+                this.$router.push({ name: 'AblationMedication', params: { medicationId: id } })
+            }
         },
         openFollowAbl(id) {
-            this.$router.push({ name: 'FollowingAblation', params: { followAblationId: id }})
+            if (this.currentPatient.patientSerialNumber) {
+                this.$router.push({ name: 'FollowingAblation', params: { followAblationId: id }})
+            }
         },
         openFollowUp( id ) {
-            this.$router.push({ name: 'FollowUp', params: { patientId: id } });
+            if (this.currentPatient.patientSerialNumber) {
+                this.$router.push({ name: 'FollowUp', params: { patientId: id } });
+            }
         }
     },
     computed: {

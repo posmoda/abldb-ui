@@ -341,20 +341,30 @@
             </p>
         </section>
         <AblationMedication :parentGivenId="followingAblation.internalMedicineId"></AblationMedication>
+        <p><button class="caution" v-on:click="openModal">このアブレーションを削除する</button></p>
+        <Modal @close="closeModal" v-if="modal">
+            <p>本当にこのアブレーションを削除しますか？</p>
+            <template slot="footer">
+                <button v-on:click="deleteFollowingAblation">削除</button><button v-on:click="closeModal">キャンセル</button>
+            </template>
+        </Modal>
     </section>
 </template>
 <script>
 //import UCG from '@/components/ucg.vue'
 import AblationMedication from '@/views/AblationMedication.vue'
+import Modal from '@/components/Modal.vue'
 export default {
     components: {
         //UCG,
-        AblationMedication
+        AblationMedication,
+        Modal
     },
     data() {
         return {
             followingAblation: {
-            }
+            },
+            modal: false
         }
     },
     methods: {
@@ -377,6 +387,23 @@ export default {
                     console.log( 'FollowingAblation update: SUCCESS' )
                 }
             });
+        },
+        openModal: function() {
+            this.modal = true;
+        },
+        closeModal: function() {
+            this.modal = false;
+        },
+        deleteFollowingAblation() {
+            const followingAblationId = this.$route.params.followAblationId;
+            this.axios.post(
+                this.$store.getters.apiRoot + '/following_ablation/' + followingAblationId,
+                { order: 'delete' }
+            ).then(( response ) => {
+                if( response.status == 200 ) {
+                    console.log( 'FollowingAblation delete: SUCCESS' )
+                }
+            })
         }
     },
     created: function() {
