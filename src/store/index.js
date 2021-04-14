@@ -32,6 +32,7 @@ export default new Vuex.Store({
         },
         loginUser: {
             id: "testUser",
+            hospital: "TestHospital",
             token: "testToken"
         },
         apiRoot: "http://localhost:5000/api"
