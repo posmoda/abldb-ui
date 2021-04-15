@@ -38,6 +38,11 @@ const routes = [
         path: '/followup/:patientId',
         name: 'FollowUp',
         component: () => import(/* webpackChunkName: "followUp" */ '@/views/FollowUp.vue')
+    },
+    {
+        path: '/login',
+        name: 'Login',
+        component: () => import(/* webpackChunkName: "logIn" */ '@/components/login.vue')
     }
 ]
 

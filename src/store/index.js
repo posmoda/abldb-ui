@@ -31,9 +31,9 @@ export default new Vuex.Store({
             followingAblations: []
         },
         loginUser: {
-            id: "testUser",
-            hospital: "TestHospital",
-            token: "testToken"
+            id: null,
+            hospital: null,
+            token: null
         },
         apiRoot: "http://localhost:5000/api"
         //apiRoot: "https://www.postmoderns.info/abldb-api"
@@ -45,8 +45,8 @@ export default new Vuex.Store({
         [ types.UPDATE_CURRENT_PATIENT ]( state, currentPatient ){
             state.currentPatient = currentPatient;
         },
-        [ types.UPDATE_USER ]( state, userInfo ){
-            state.loginUser = userInfo;
+        [ types.UPDATE_USER ]( state, loginUser ){
+            state.loginUser = loginUser;
         }
     },
     getters,

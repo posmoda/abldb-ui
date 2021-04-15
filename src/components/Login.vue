@@ -25,12 +25,16 @@ export default {
     },
     methods: {
         doLogin() {
-            const params = new URLSearchParams();
-            params.append('userId', this.user.userId);
-            params.append('request', 'salt');
+            //const params = new URLSearchParams();
+            //params.append('userId', this.user.userId);
+            //params.append('request', 'salt');
+            request = {
+                user: this.user.userId,
+                order: 'salt'
+            }
             let sha = new jssha("SHA-256", "TEXT");
             let salt = '';
-            this.axios.post(this.$store.state.apiUri + "/login", params).then(response => {
+            this.axios.post(this.$store.getters.apiRoot + "/login", request).then(response => {
                 salt = response.data.salt;
                 sha.update(this.user.password + salt);
                 let hash = sha.getHash("HEX");
@@ -44,16 +48,22 @@ export default {
                 hash = sha.getHash("HEX")
                 console.log("finalhash: " + hash)
 
-                params.append('hash', hash);
-                params.delete('request');
-                params.append('request', 'auth');
-                params.append('userSalt', userSalt);
+                //params.append('hash', hash);
+                //params.delete('request');
+                //params.append('request', 'auth');
+                //params.append('userSalt', userSalt);
 
-                this.axios.post(this.$store.state.apiUri + "/login", params).then(response => {
-                    this.$store.dispatch("auth", {
-                        userId: response.data.userId,
-                        userToken: response.data.userToken,
-                        message: response.data.message
+                authRequest = {
+                    user: this.user.userId,
+                    order: 'auth',
+                    userSalt: userSalt,
+                    challengeHash: hash
+                }
+
+                this.axios.post(this.$store.getters.apiRoot + "/login", authRequest).then(response => {
+                    this.$store.dispatch("UPDATE_USER", {
+                        id: response.data.userId,
+                        token: response.data.userToken,
                     });
                     this.$router.push(this.$route.query.redirect);
                 });
