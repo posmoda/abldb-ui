@@ -402,6 +402,7 @@ export default {
             ).then(( response ) => {
                 if( response.status == 200 ) {
                     console.log( 'FollowingAblation delete: SUCCESS' )
+                    this.$router.push({ name: 'Home' });        
                 }
             })
         }
