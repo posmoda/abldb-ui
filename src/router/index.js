@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-//import store from '../store/index'
+import Store from '@/store/index.js'
 
 Vue.use(VueRouter)
 
@@ -9,11 +9,13 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+      meta: { requireAuth: true }
   },
   {
       path: '/register/:patientId',
     name: 'Register',
+      meta: { requireAuth: true },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -22,27 +24,31 @@ const routes = [
   {
       path: '/first_ablation/:patientId',
     name: 'FirstAblation',
+      meta: { requireAuth: true },
     component: () => import('../views/FirstAblation.vue')
   },
   {
       path: '/medication/:medicationId',
     name: 'AblationMedication',
+      meta: { requireAuth: true },
     component: () => import( /* webpackChunkName: "ablationMedication" */ '@/views/AblationMedication.vue' )
   },
   {
       path: '/following_ablation/:followAblationId',
     name: 'FollowingAblation',
+      meta: { requireAuth: true },
     component: () => import( /* webpackChunkName: "followingAblation" */ '@/views/FollowingAblation.vue' )
   },
     {
         path: '/followup/:patientId',
         name: 'FollowUp',
+      meta: { requireAuth: true },
         component: () => import(/* webpackChunkName: "followUp" */ '@/views/FollowUp.vue')
     },
     {
         path: '/login',
         name: 'Login',
-        component: () => import(/* webpackChunkName: "logIn" */ '@/components/login.vue')
+        component: () => import(/* webpackChunkName: "logIn" */ '@/components/Login.vue')
     }
 ]
 
@@ -52,6 +58,14 @@ const router = new VueRouter({
   routes,
     scrollBehavior (){
         return { x: 0, y: 0 }
+    }
+});
+
+router.beforeEach(( to, from, next ) => {
+    if ( to.matched.some( record => record.meta.requireAuth ) && !Store.getters.loginToken ) {
+        next ({ path: '/login', query: { redirect: to.fullPath } });
+    } else {
+        next ();
     }
 })
 

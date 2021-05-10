@@ -28,7 +28,7 @@ export default {
             //const params = new URLSearchParams();
             //params.append('userId', this.user.userId);
             //params.append('request', 'salt');
-            request = {
+            let request = {
                 user: this.user.userId,
                 order: 'salt'
             }
@@ -53,7 +53,7 @@ export default {
                 //params.append('request', 'auth');
                 //params.append('userSalt', userSalt);
 
-                authRequest = {
+                let authRequest = {
                     user: this.user.userId,
                     order: 'auth',
                     userSalt: userSalt,
@@ -61,9 +61,9 @@ export default {
                 }
 
                 this.axios.post(this.$store.getters.apiRoot + "/login", authRequest).then(response => {
-                    this.$store.dispatch("UPDATE_USER", {
+                    this.$store.commit("UPDATE_USER", {
                         id: response.data.userId,
-                        token: response.data.userToken,
+                        token: response.data.token,
                     });
                     this.$router.push(this.$route.query.redirect);
                 });
