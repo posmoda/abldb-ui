@@ -62,8 +62,9 @@ export default {
 
                 this.axios.post(this.$store.getters.apiRoot + "/login", authRequest).then(response => {
                     this.$store.commit("UPDATE_USER", {
-                        id: response.data.userId,
+                        id: response.data.user_id,
                         token: response.data.token,
+                        hospital: response.data.hospital
                     });
                     this.$router.push(this.$route.query.redirect);
                 });

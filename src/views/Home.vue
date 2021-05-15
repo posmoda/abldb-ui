@@ -45,9 +45,7 @@ export default {
         },
         requestNewPatient: function() {
             this.axios.get( this.$store.getters.apiRoot + '/baseline/new', {
-                headers: {
-                    "Authorization": "Bearer hanamogera"
-                },
+                headers: { "Authorization": "Bearer " + this.$store.getters.loginToken },
                 data: {}
             }).then(( response ) => {
                 this.$store.commit( 'UPDATE_PATIENT_ID', response.data );

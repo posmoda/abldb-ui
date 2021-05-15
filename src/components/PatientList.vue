@@ -47,7 +47,10 @@ export default {
     },
     methods: {
         getPatientList() {
-            this.axios.get( this.$store.getters.apiRoot + '/patients'
+            this.axios.get( this.$store.getters.apiRoot + '/patients', {
+                headers: { "Authorization": "Bearer " + this.$store.getters.loginToken },
+                data: {}
+            }
             ).then(( response ) => {
                 this.patients = response.data;
             });
@@ -90,7 +93,10 @@ export default {
             this.followAblModal = false;
         },
         requestFollowAblation() {
-            this.axios.get( this.$store.getters.apiRoot + '/following_ablation/new/' + this.$store.getters.patientId
+            this.axios.get( this.$store.getters.apiRoot + '/following_ablation/new/' + this.$store.getters.patientId, {
+                headers: { "Authorization": "Bearer " + this.$store.getters.loginToken },
+                data: {}
+            }
             ).then(( response ) => {
                 this.$router.push({ name: 'FollowingAblation', params: { followAblationId: response.data } });
             });

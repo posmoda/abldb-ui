@@ -341,7 +341,10 @@ export default {
         getAblationMedication() {
             const id = this.detectId();
             if (id) {
-                this.axios.get( this.$store.getters.apiRoot + '/medication/' + id
+                this.axios.get( this.$store.getters.apiRoot + '/medication/' + id, {
+                    headers: { "Authorization": "Bearer " + this.$store.getters.loginToken },
+                    data: {}
+                }
                 ).then(( response ) => {
                     this.ablationMedication = response.data;
                     //if ( this.isIdRouted ){
@@ -355,7 +358,9 @@ export default {
             console.log( id );
             this.axios.post( 
                 this.$store.getters.apiRoot + '/medication/' + id,
-                this.ablationMedication
+                this.ablationMedication, {
+                    headers: { "Authorization": "Bearer " + this.$store.getters.loginToken },
+                    }
             ).then(( response ) =>{
                 if( response.status == 200 ){
                     console.log( 'Medication update: SUCCESS' )

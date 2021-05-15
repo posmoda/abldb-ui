@@ -364,7 +364,9 @@ export default {
         updateBaseline: function(){
             this.axios.post( 
                 this.$store.getters.apiRoot + '/baseline/' + this.$route.params.patientId,//this.$store.getters.patientId,
-                this.patient
+                this.patient, {
+                    headers: { "Authorization": "Bearer " + this.$store.getters.loginToken },
+                }
             ).then(( response ) => {
                 if( response.status == 200 ){
                     console.log( 'Baseline update: SUCCESS' )
@@ -374,7 +376,10 @@ export default {
             });
         },
         getBaseline: function(){
-            this.axios.get( this.$store.getters.apiRoot + '/baseline/' + this.$route.params.patientId//this.$store.getters.patientId
+            this.axios.get( this.$store.getters.apiRoot + '/baseline/' + this.$route.params.patientId, {//this.$store.getters.patientId
+                headers: { "Authorization": "Bearer " + this.$store.getters.loginToken },
+                data: {}
+            }
             ).then(( response ) => {
                 this.patient = response.data;
             })

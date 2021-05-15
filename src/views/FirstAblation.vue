@@ -401,7 +401,10 @@ export default {
         updateFirstAblation: function() {
             this.axios.post( 
                 this.$store.getters.apiRoot + '/1st-abl/' + this.$route.params.patientId, //this.$store.getters.patientId,
-                this.firstAblation
+                this.firstAblation, {
+                    headers: { "Authorization": "Bearer " + this.$store.getters.loginToken },
+                    data: {}
+                }
             ).then(( response ) => {
                 if( response.status == 200 ){
                     console.log( 'Baseline update: SUCCESS' )
@@ -411,7 +414,10 @@ export default {
             });
         },
         getFirstAblation: function() {
-            this.axios.get( this.$store.getters.apiRoot + '/1st-abl/' + this.$route.params.patientId //this.$store.getters.patientId
+            this.axios.get( this.$store.getters.apiRoot + '/1st-abl/' + this.$route.params.patientId, { //this.$store.getters.patientId
+                headers: { "Authorization": "Bearer " + this.$store.getters.loginToken },
+                data: {}
+            }
             ).then(( response ) => {
                 this.firstAblation = response.data;
                 this.$store.dispatch('updatePatientIdAction');

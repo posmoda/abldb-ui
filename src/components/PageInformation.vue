@@ -10,14 +10,14 @@
             <table>
                 <tr>
                     <th>所属</th>
-                    <td>京都大学病院</td>
+                    <td>{{ loginUser.hospital }}</td>
                 </tr>
                 <tr>
                     <th>ユーザー名</th>
-                    <td>テストユーザー</td>
+                    <td>{{ loginUser.id }}</td>
                 </tr>
             </table>
-            <p><button>ログアウト</button></p>
+            <p><button v-on:click="doLogout">ログアウト</button></p>
         </section>
         </div>
         <section class="header__contents">
@@ -45,6 +45,27 @@ export default {
     computed: {
         patientId() {
             return this.$store.getters.patientId;
+        },
+        loginUser() {
+            return this.$store.getters.loginUser;
+        }
+    },
+    methods: {
+        doLogout() {
+            let request = {
+                order: 'logout',
+                token: this.$store.getters.loginToken
+            }
+            this.axios.post( this.$store.getters.apiRoot + "/login", request ).then( response => {
+                if ( response.status == 200 ){
+                    this.$store.commit( "UPDATE_USER", {
+                        id: null,
+                        hospital: null,
+                        token: null       
+                    });
+                    this.$router.go({ path: this.$router.currentRoute.path, force: true });
+                }
+            })
         }
     }
 }

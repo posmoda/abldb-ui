@@ -370,7 +370,10 @@ export default {
     methods: {
         getFollowAblation() {
             const followAblationId = this.$route.params.followAblationId
-            this.axios.get( this.$store.getters.apiRoot + '/following_ablation/' + followAblationId
+            this.axios.get( this.$store.getters.apiRoot + '/following_ablation/' + followAblationId, {
+                headers: { "Authorization": "Bearer " + this.$store.getters.loginToken },
+                data: {}
+            }
             ).then(( response ) => {
                 this.followingAblation = response.data;
                 this.$store.commit( 'UPDATE_PATIENT_ID', response.data.patientSerialNumber );
@@ -381,7 +384,10 @@ export default {
             const followAblationId = this.$route.params.followAblationId;
             this.axios.post(
                 this.$store.getters.apiRoot + '/following_ablation/' + followAblationId,
-                this.followingAblation
+                this.followingAblation, {
+                    headers: { "Authorization": "Bearer " + this.$store.getters.loginToken },
+                    data: {}
+                }
             ).then(( response ) => {
                 if( response.status == 200 ) {
                     console.log( 'FollowingAblation update: SUCCESS' )
@@ -398,7 +404,10 @@ export default {
             const followingAblationId = this.$route.params.followAblationId;
             this.axios.post(
                 this.$store.getters.apiRoot + '/following_ablation/' + followingAblationId,
-                { order: 'delete' }
+                { order: 'delete' }, {
+                    headers: { "Authorization": "Bearer " + this.$store.getters.loginToken },
+                    data: {}
+                }
             ).then(( response ) => {
                 if( response.status == 200 ) {
                     console.log( 'FollowingAblation delete: SUCCESS' )

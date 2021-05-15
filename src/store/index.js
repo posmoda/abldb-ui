@@ -18,6 +18,9 @@ const getters = {
     },
     currentPatient: (state) => {
         return state.currentPatient;
+    },
+    loginUser: (state) => {
+        return state.loginUser;
     }
 }
 
@@ -53,8 +56,10 @@ export default new Vuex.Store({
     actions: {
         async updatePatientIdAction( context ) {
             var currentPatient = {}
-        await axios
-        .get( context.state.apiRoot + '/patients/' + context.state.patientNumber )
+        await axios.get( context.state.apiRoot + '/patients/' + context.state.patientNumber, {
+            headers: { "Authorization": "Bearer " + context.state.loginUser.token },
+            data: {}
+        })
         .then( response => {
             currentPatient = response.data;
         });

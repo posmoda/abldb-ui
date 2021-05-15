@@ -328,7 +328,10 @@ export default {
         updateFollowUp: function(){
             this.axios.post( 
                 this.$store.getters.apiRoot + '/followup/' + this.$route.params.patientId,//this.$store.getters.patientId,
-                this.followUp
+                this.followUp, {
+                    headers: { "Authorization": "Bearer " + this.$store.getters.loginToken },
+                    data: {}
+                }
             ).then(( response ) => {
                 if( response.status == 200 ){
                     console.log( 'Follow up update: SUCCESS' )
@@ -338,7 +341,10 @@ export default {
             });
         },
         getFollowUp: function(){
-            this.axios.get( this.$store.getters.apiRoot + '/followup/' + this.$route.params.patientId//this.$store.getters.patientId
+            this.axios.get( this.$store.getters.apiRoot + '/followup/' + this.$route.params.patientId, { //this.$store.getters.patientId
+                headers: { "Authorization": "Bearer " + this.$store.getters.loginToken },
+                data: {}
+            }
             ).then(( response ) => {
                 this.followUp = response.data;
             })

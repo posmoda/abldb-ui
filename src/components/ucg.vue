@@ -140,7 +140,10 @@ export default {
         },
         getUcg: function( id ) {
             this.axios.get(
-                this.$store.getters.apiRoot + '/ucg/' + id
+                this.$store.getters.apiRoot + '/ucg/' + id, {
+                headers: { "Authorization": "Bearer " + this.$store.getters.loginToken },
+                data: {}
+                }
             ).then(( response ) => {
                 this.ucg = response.data;
             });        
@@ -148,7 +151,9 @@ export default {
         updateUcg: function() {
             this.axios.post(
                 this.$store.getters.apiRoot + '/ucg/' + this.ucg.ucgId,
-                this.ucg
+                this.ucg, {
+                    headers: { "Authorization": "Bearer " + this.$store.getters.loginToken }
+                }
             ).then(( response ) => {
                 if( response.status == 200 ){
                     console.log( 'UCG update: SUCCESS' );
