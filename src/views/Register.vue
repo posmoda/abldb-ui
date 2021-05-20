@@ -279,7 +279,7 @@
             </p>
             <p class="form__row">
                 <label for="blood__cre">Cre</label>
-                <input type="number" step="0.1" name="blood__cre" id="blood__cre" v-model="patient.cre">
+                <input type="number" step="0.01" name="blood__cre" id="blood__cre" v-model="patient.cre">
             </p>
             <p class="form__row">
                 <label for="blood__egfr">eGFR</label>
@@ -303,7 +303,7 @@
             </p>
             <p class="form__row">
                 <label for="blood__ptInr">PT-INR</label>
-                <input type="number" step="0.1" name="blood__ptInr" id="blood__ptInr" v-model="patient.ptInr">
+                <input type="number" step="0.01" name="blood__ptInr" id="blood__ptInr" v-model="patient.ptInr">
             </p>
             <p class="form__row">
                 <label for="blood__dDimer">D-Dimer</label>
@@ -315,15 +315,15 @@
             </p>
             <p class="form__row">
                 <label for="blood__hmt">Ht</label>
-                <input type="number" step="1" name="blood__hmt" id="blood__hmt" v-model="patient.hmt">
+                <input type="number" step="0.1" name="blood__hmt" id="blood__hmt" v-model="patient.hmt">
             </p>
             <p class="form__row">
                 <label for="blood__tsh">TSH</label>
-                <input type="number" step="0.1" name="blood__tsh" id="blood__tsh" v-model="patient.tsh">
+                <input type="number" step="0.01" name="blood__tsh" id="blood__tsh" v-model="patient.tsh">
             </p>
             <p class="form__row">
                 <label for="blood__ft4">FT4</label>
-                <input type="number" step="0.1" name="blood__ft4" id="blood__ft4" v-model="patient.ft4">
+                <input type="number" step="0.01" name="blood__ft4" id="blood__ft4" v-model="patient.ft4">
             </p>
             <p class="form__row">
                 <label for="blood__ast">AST</label>

@@ -4,7 +4,7 @@
         <h1><a href="/">KUHP Cardio Ablation Registry</a></h1>
         <dl class="pageInformation__ptNumber">
             <dt>症例番号</dt>
-            <dd>{{ patientId }}</dd>
+            <dd>{{ currentPatient.patientNumber }}</dd>
         </dl>
         <section class="header__user">
             <table>
@@ -43,8 +43,8 @@ export default {
         'contents'
     ],
     computed: {
-        patientId() {
-            return this.$store.getters.patientId;
+        currentPatient() {
+            return this.$store.getters.currentPatient;
         },
         loginUser() {
             return this.$store.getters.loginUser;
@@ -118,9 +118,9 @@ dl.pageInformation__ptNumber {
     color: #fcfcfc;
     text-align: center;
 }
-dl.pageInformation__ptNumber dt:after {
+/*dl.pageInformation__ptNumber dt:after {
     content: ':';
-}
+}*/
 dl.pageInformation__ptNumber dd {
     font-weight: bold;
     font-size: 3rem;

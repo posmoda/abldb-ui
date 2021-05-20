@@ -3,23 +3,23 @@
         <h2>UCG</h2>
             <p class="form__row">
                 <label for="ucg__lvefTeichholz">LVEF (Teichholz)</label>
-                <input type="number" step="1" name="ucg__lvefTeichholz" id="ucg__lvefTeichholz" v-model="ucg.lvefTeichholz">
+                <input type="number" step="0.1" name="ucg__lvefTeichholz" id="ucg__lvefTeichholz" v-model="ucg.lvefTeichholz">%
             </p>
             <p class="form__row">
                 <label for="ucg__lvefSimpson">LVEF (Simpson)</label>
-                <input type="number" step="1" name="ucg__lvefSimpson" id="ucg__lvefSimpson" v-model="ucg.lvefSimpson">
+                <input type="number" step="0.1" name="ucg__lvefSimpson" id="ucg__lvefSimpson" v-model="ucg.lvefSimpson">%
             </p>
             <p class="form__row">
                 <label for="ucg__lvdd">LVDd</label>
-                <input type="number" step="1" name="ucg__lvdd" id="ucg__lvdd" v-model="ucg.lvdd">
+                <input type="number" step="0.1" name="ucg__lvdd" id="ucg__lvdd" v-model="ucg.lvdd">mm
             </p>
             <p class="form__row">
                 <label for="ucg__lvds">LVDs</label>
-                <input type="number" step="1" name="ucg__lvds" id="ucg__lvds" v-model="ucg.lvds">
+                <input type="number" step="0.1" name="ucg__lvds" id="ucg__lvds" v-model="ucg.lvds">mm
             </p>
             <p class="form__row">
                 <label for="ucg__lad">LAD</label>
-                <input type="number" step="1" name="ucg__lad" id="ucg__lad" v-model="ucg.lad">
+                <input type="number" step="0.1" name="ucg__lad" id="ucg__lad" v-model="ucg.lad">mm
             </p>
             <!--<p class="form__row">
                 <label for="ucg__laDiameterVertical">LA径 (4C縦)</label>
@@ -51,15 +51,15 @@
             </p>
             <p class="form__row">
                 <label for="ucg__eWave">E波</label>
-                <input type="number" step="0.1" name="ucg__eWave" id="ucg__eWave" v-model="ucg.eWave">
+                <input type="number" step="0.01" name="ucg__eWave" id="ucg__eWave" v-model="ucg.eWave">m/s
             </p>
             <p class="form__row">
                 <label for="ucg__aWave">A波</label>
-                <input type="number" step="0.1" name="ucg__aWave" id="ucg__aWave" v-model="ucg.aWave">
+                <input type="number" step="0.01" name="ucg__aWave" id="ucg__aWave" v-model="ucg.aWave">m/s
             </p>
             <p class="form__row">
                 <label for="ucg__dct">DcT</label>
-                <input type="number" step="1" name="ucg__dct" id="ucg__dct" v-model="ucg.dct">
+                <input type="number" step="1" name="ucg__dct" id="ucg__dct" v-model="ucg.dct">msec
             </p>
             <fieldset>
                 <legend>AR（４段階）</legend>
@@ -95,7 +95,7 @@
             </fieldset>-->
             <p class="form__row">
                 <label for="ucg__trPg">TR-PG</label>
-                <input type="number" step="1" name="ucg__trPg" id="ucg__trPg" v-model="ucg.trPg">
+                <input type="number" step="0.1" name="ucg__trPg" id="ucg__trPg" v-model="ucg.trPg">mmHg
             </p>
             <fieldset>
                 <legend>moderate以上のMS</legend>
@@ -118,7 +118,7 @@
             </fieldset>
             <p class="form__row">
                 <label for="ucg__laaFlow">LAA Flow</label>
-                <input type="number" step="1" name="ucg__laaFlow" id="ucg__laaFlow" v-model.number="ucg.laaFlow">
+                <input type="number" step="0.1" name="ucg__laaFlow" id="ucg__laaFlow" v-model.number="ucg.laaFlow">cm/s
             </p>
     </section>
 </template>
