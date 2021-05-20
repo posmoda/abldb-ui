@@ -8,7 +8,7 @@
             </thead>
             <tbody>
                 <tr v-for="patient in patients" v-bind:key="patient.patientSerialNumber">
-                    <td>{{ patient.patientSerialNumber }}</td>
+                    <td>{{ patient.patientNumber }}</td>
                     <td><a v-on:click="goBaseline(patient.patientSerialNumber)">入力</a></td>
                     <td><a v-on:click="goFirstAblation(patient.patientSerialNumber)" v-bind:class="[patient.firstAblationId ? '' : 'notice' ]"><span v-if="patient.firstAblationId">入力あり</span><span v-else>新規入力</span></a></td>
                     <td v-if="patient.firstAblationId === null"></td>
