@@ -9,17 +9,37 @@
         </p>
             <fieldset>
                 <legend>3D system</legend>
-                <label><input type="radio" name="content__threedSystem" id="content__threedSystem__carto" value="CARTO" v-model="firstAblation.threedSystem"><span>CARTO</span></label>
-                <label><input type="radio" name="content__threedSystem" id="content__threedSystem__ensite" value="EnSite" v-model="firstAblation.threedSystem"><span>EnSite</span></label>
-                <label><input type="radio" name="content__threedSystem" id="content__threedSystem__rhythmia" value="Rhythmia" v-model="firstAblation.threedSystem"><span>Rhythmia</span></label>
-                <label><input type="radio" name="content__threedSystem" id="content__threedSystem__none" value="None" v-model="firstAblation.threedSystem"><span>なし</span></label>
+                <label><input type="checkbox" name="content__threedSystem" id="content__threedSystem__carto" value="CARTO" v-model="firstAblation.threedSystemCarto"><span>CARTO</span></label>
+                <label><input type="checkbox" name="content__threedSystem" id="content__threedSystem__ensite" value="EnSite" v-model="firstAblation.threedSystemEnsite"><span>EnSite</span></label>
+                <label><input type="checkbox" name="content__threedSystem" id="content__threedSystem__rhythmia" value="Rhythmia" v-model="firstAblation.threedSystemRhythmia"><span>Rhythmia</span></label>
             </fieldset>
-            <fieldset>
+            <fieldset :class="{ hidden: !firstAblation.threedSystemCarto }">
+                <legend>CARTO</legend>
+                <label><input type="radio" name="content__carto" id="content__carto__fourmm" value="4mm" v-model="firstAblation.carto"><span>4mm</span></label>
+                <label><input type="radio" name="content__carto" id="content__carto__eightmm" value="8mm" v-model="firstAblation.carto"><span>8mm</span></label>
+                <label><input type="radio" name="content__carto" id="content__carto__st" value="st" v-model="firstAblation.carto"><span>ST</span></label>
+                <label><input type="radio" name="content__carto" id="content__carto__stsf" value="stsf" v-model="firstAblation.carto"><span>ST/SF</span></label>
+            </fieldset>
+            <fieldset :class="{ hidden: !firstAblation.threedSystemEnsite }">
+                <legend>EnSite</legend>
+                <label><input type="radio" name="content__ensite" id="content__ensite__fourmm" value="4mm" v-model="firstAblation.ensite"><span>4mm</span></label>
+                <label><input type="radio" name="content__ensite" id="content__ensite__eightmm" value="8mm" v-model="firstAblation.ensite"><span>8mm</span></label>
+                <label><input type="radio" name="content__ensite" id="content__ensite__tacticath" value="tacticath" v-model="firstAblation.ensite"><span>TactiCath</span></label>
+                <label><input type="radio" name="content__ensite" id="content__ensite__flexability" value="flexability" v-model="firstAblation.ensite"><span>Flexability</span></label>
+            </fieldset>
+            <fieldset :class="{ hidden: !firstAblation.threedSystemRhythmia }">
+                <legend>Rhythmia</legend>
+                <label><input type="radio" name="content__rhythmia" id="content__rhythmia__fourmm" value="4mm" v-model="firstAblation.rhythmia"><span>4mm</span></label>
+                <label><input type="radio" name="content__rhythmia" id="content__rhythmia__eightmm" value="8mm" v-model="firstAblation.rhythmia"><span>8mm</span></label>
+                <label><input type="radio" name="content__rhythmia" id="content__rhythmia__mifi" value="mifi" v-model="firstAblation.rhythmia"><span>MiFi</span></label>
+                <label><input type="radio" name="content__rhythmia" id="content__rhythmia__stablepoint" value="stablepoint" v-model="firstAblation.rhythmia"><span>StablePoint</span></label>
+            </fieldset>
+            <!--<fieldset>
                 <legend>アブカテ種別</legend>
                 <label><input type="radio" name="content__ablKind" id="content__ablKind__st" value="st" v-model="firstAblation.ablKind"><span>ST</span></label>
                 <label><input type="radio" name="content__ablKind" id="content__ablKind__cryoCf" value="cryo_cf" v-model="firstAblation.ablKind"><span>Cryo + CF illig</span></label>
                 <label><input type="radio" name="content__ablKind" id="content__ablKind__stsf" value="stsf" v-model="firstAblation.ablKind"><span>STSF</span></label>
-            </fieldset>
+            </fieldset>-->
             <fieldset>
                 <legend>造影剤使用</legend>
                 <label><input type="radio" name="content__contrast" id="content__contrast__true" v-bind:value="true" v-model="firstAblation.contrast"><span>あり</span></label>

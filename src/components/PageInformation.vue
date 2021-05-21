@@ -56,15 +56,22 @@ export default {
                 order: 'logout',
                 token: this.$store.getters.loginToken
             }
-            this.axios.post( this.$store.getters.apiRoot + "/login", request ).then( response => {
-                if ( response.status == 200 ){
-                    this.$store.commit( "UPDATE_USER", {
-                        id: null,
-                        hospital: null,
-                        token: null       
-                    });
-                    this.$router.go({ path: this.$router.currentRoute.path, force: true });
-                }
+            let that = this
+            this.axios.post( this.$store.getters.apiRoot + "/login", request ).then( function() {
+                that.$store.commit( "UPDATE_USER", {
+                    id: null,
+                    hospital: null,
+                    token: null       
+                });
+                that.$router.go({ path: that.$router.currentRoute.path, force: true });
+            }).catch( function() {
+                that.$store.commit( "UPDATE_USER", {
+                    id: null,
+                    hospital: null,
+                    token: null       
+                });
+                that.$router.go({ path: that.$router.currentRoute.path, force: true });
+
             })
         }
     }
