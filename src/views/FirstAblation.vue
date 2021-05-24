@@ -62,11 +62,6 @@
                 <input type="number" step="1" min="0" name="content__totalDose" id="content__totalDose" v-model.number="firstAblation.totalDose">
             </p>
             <fieldset>
-                <legend>LVZ塊</legend>
-                <label><input type="radio" name="content__lvz" id="content__lvz__true" v-bind:value="true" v-model="firstAblation.lvz"><span>あり</span></label>
-                <label><input type="radio" name="content__lvz" id="content__lvz__false" v-bind:value="false" v-model="firstAblation.lvz"><span>なし</span></label>
-            </fieldset>
-            <fieldset>
                 <legend>術中左房造影</legend>
                 <label><input type="radio" name="content__leftAngiography" id="content__leftAngiography__true" v-bind:value="true" v-model="firstAblation.leftAngiography"><span>あり</span></label>
                 <label><input type="radio" name="content__leftAngiography" id="content__leftAngiography__false" v-bind:value="false" v-model="firstAblation.leftAngiography"><span>なし</span></label>
@@ -182,6 +177,11 @@
                 <label for="content__nonPvFociPlace">Non-PV Foci 場所</label>
                 <input type="text" name="content__nonPvFociPlace" id="content__nonPvFociPlace" v-model="firstAblation.nonPvFociPlace">
             </p>
+            <fieldset>
+                <legend>LVZ塊</legend>
+                <label><input type="radio" name="content__lvz" id="content__lvz__true" v-bind:value="true" v-model="firstAblation.lvz"><span>あり</span></label>
+                <label><input type="radio" name="content__lvz" id="content__lvz__false" v-bind:value="false" v-model="firstAblation.lvz"><span>なし</span></label>
+            </fieldset>
             <p class="form__row">
                 <label for="content__leftLowVoltageRatio05v">左房 Low voltage area 割合 (&lt;0.5V)</label>
                 <input type="number" step="0.01" min="0.0" max="1.0" name="content__leftLowVoltageRatio05v" id="content__leftLowVoltageRatio05v" v-model.number="firstAblation.leftLowVoltageRatio05v">
@@ -389,7 +389,7 @@
                 <label><input type="checkbox" name="complex__pulmonaryVeinStenosis" id="complex__pulmonaryVeinStenosis" v-model="firstAblation.pulmonaryVeinStenosis"><span>急性肺静脈狭窄・閉塞</span></label>
                 <label><input type="checkbox" name="complex__pulmonaryEmbolism" id="complex__pulmonaryEmbolism" v-model="firstAblation.pulmonaryEmbolism"><span>肺塞栓症</span></label>
                 <label><input type="checkbox" name="complex__temporaryPmByAvb" id="complex__temporaryPmByAvb" v-model="firstAblation.temporaryPmByAvb"><span>temporary PM使用 due to AVB</span></label>
-                <label><input type="checkbox" name="complex__unexpectedAtrioventricularBlock" id="complex__unexpectedAtrioventricularBlock" v-model="firstAblation.unexpectedAtrioventricularBlock"><span>予定しない高級型ペースメーカーを要した房室ブロック</span></label>
+                <label><input type="checkbox" name="complex__unexpectedAtrioventricularBlock" id="complex__unexpectedAtrioventricularBlock" v-model="firstAblation.unexpectedAtrioventricularBlock"><span>予定しない恒久型ペースメーカーを要した房室ブロック</span></label>
                 <label><input type="checkbox" name="complex__pneumothorax" id="complex__pneumothorax" v-model="firstAblation.pneumothorax"><span>気胸</span></label>
                 <label><input type="checkbox" name="complex__hemothorax" id="complex__hemothorax" v-model="firstAblation.hemothorax"><span>血胸</span></label>
                 <label><input type="checkbox" name="complex__sinusDissection" id="complex__sinusDissection" v-model="firstAblation.sinusDissection"><span>冠静脈洞乖離</span></label>
