@@ -1,5 +1,8 @@
 <template>
     <div>
+        <ul class="pagenation">
+            <li v-for="page of totalPages" :key="page" v-on:click="getPatientList(page)" v-bind:class="[Math.floor(patients[0].patientNumber / 100 + 1) == page ? 'current' : '']">{{ page * 100 - 99 }}</li>
+        </ul>
         <table>
             <thead>
                 <tr>
@@ -24,6 +27,9 @@
                 </tr>
             </tbody>
         </table>
+        <ul class="pagenation">
+            <li v-for="page of totalPages" :key="page" v-on:click="getPatientList(page)" v-bind:class="[Math.floor(patients[0].patientNumber / 100 + 1) == page ? 'current' : '']">{{ page * 100 - 99 }}</li>
+        </ul>
         <Modal @close="closeFollowAblModal" v-if="followAblModal">
             <p>追加アブレーションを新規登録しますか?</p>
             <template slot="footer">
@@ -42,20 +48,22 @@ export default {
             patients: [
                 { patientSerialNumber: 1, baseline: true, firstAblation: true, followingAblation: false }
             ],
+            totalPatients: 0,
             followAblModal: false
         }
     },
     methods: {
-        getPatientList() {
-            this.axios.get( this.$store.getters.apiRoot + '/patients', {
+        getPatientList( page ) {
+            this.axios.get( this.$store.getters.apiRoot + '/patientlist/' + page, {
                 headers: { "Authorization": "Bearer " + this.$store.getters.loginToken },
                 data: {}
             }
             ).then(( response ) => {
-                this.patients = response.data;
+                this.patients = response.data.patients;
+                this.totalPatients = response.data.totalPatients;
             });
         },
-        goBaseline(number) {
+        goBaseline( number ) {
             this.$store.commit( 'UPDATE_PATIENT_ID', number );
             this.$store.dispatch( 'updatePatientIdAction' );
             this.$router.push({ name: 'Register', params: { patientId: number }});
@@ -103,7 +111,12 @@ export default {
         }
     },
     mounted() {
-        this.getPatientList();
+        this.getPatientList(1);
+    },
+    computed: {
+        totalPages() {
+            return Math.floor( this.totalPatients / 100 ) + 1;
+        }
     }
 }
 </script>
@@ -156,5 +169,22 @@ ol.followingAblList li {
 }
 table p {
     margin: 0;
+}
+ul.pagenation {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    justify-content: space-between;
+}
+ul.pagenation li {
+    display: block;
+    color: white;
+    font-weight: bold;
+    padding: 5px 10px;
+    margin: 2.5px;
+    background-color: #80abb0;
+}
+ul.pagenation li.current {
+    background-color: #e26061;
 }
 </style>
