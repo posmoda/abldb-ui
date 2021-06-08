@@ -29,7 +29,7 @@
         </fieldset>
         <fieldset>
             <legend>RFCA or CB</legend>
-            <label><input type="radio" name="basic__rfcaCb" id="basic__rfcaCb__a" value="A" v-model="patient.rfcaCb"><span>A</span></label>
+            <label><input type="radio" name="basic__rfcaCb" id="basic__rfcaCb__rfca" value="RFCA" v-model="patient.rfcaCb"><span>RFCA</span></label>
             <label><input type="radio" name="basic__rfcaCb" id="basic__rfcaCb__cryo" value="Cryo" v-model="patient.rfcaCb"><span>Cryo</span></label>
         </fieldset>
         <fieldset>

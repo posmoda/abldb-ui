@@ -21,6 +21,9 @@ const getters = {
     },
     loginUser: (state) => {
         return state.loginUser;
+    },
+    currentPage: (state) => {
+        return state.currentPage;
     }
 }
 
@@ -33,6 +36,7 @@ export default new Vuex.Store({
             internalMedicineId: null,
             followingAblations: []
         },
+        currentPage: 1,
         loginUser: {
             id: null,
             hospital: null,
@@ -50,6 +54,9 @@ export default new Vuex.Store({
         },
         [ types.UPDATE_USER ]( state, loginUser ){
             state.loginUser = loginUser;
+        },
+        [ types.UPDATE_CURRENT_PAGE ]( state, currentPage ){
+            state.currentPage = currentPage;
         }
     },
     getters,

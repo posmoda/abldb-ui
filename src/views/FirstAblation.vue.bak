@@ -88,47 +88,6 @@
             </fieldset>
             <h3>PVI以外</h3>
             <fieldset>
-                <legend>術中左房造影</legend>
-                <label><input type="radio" name="content__leftAngiography" id="content__leftAngiography__true" v-bind:value="true" v-model="firstAblation.leftAngiography"><span>あり</span></label>
-                <label><input type="radio" name="content__leftAngiography" id="content__leftAngiography__false" v-bind:value="false" v-model="firstAblation.leftAngiography"><span>なし</span></label>
-            </fieldset>
-            <fieldset>
-                <legend>EEPVI</legend>
-                <label><input type="radio" name="content__eepvi" id="content__eepvi__true" v-bind:value="true" v-model="firstAblation.eepvi"><span>あり</span></label>
-                <label><input type="radio" name="content__eepvi" id="content__eepvi__false" v-bind:value="false" v-model="firstAblation.eepvi"><span>なし</span></label>
-            </fieldset>
-            <fieldset>
-                <legend>EEPVI完成</legend>
-                <label><input type="radio" name="content__completedEepvi" id="content__completedEepvi__true" v-bind:value="true" v-model="firstAblation.completedEepvi"><span>はい</span></label>
-                <label><input type="radio" name="content__completedEepvi" id="content__completedEepvi__false" v-bind:value="false" v-model="firstAblation.completedEepvi"><span>いいえ</span></label>
-            </fieldset>
-            <fieldset>
-                <legend>BOX (one ring)</legend>
-                <label><input type="radio" name="content__boxOneRing" id="content__boxOneRing__true" v-bind:value="true" v-model="firstAblation.boxOneRing"><span>あり</span></label>
-                <label><input type="radio" name="content__boxOneRing" id="content__boxOneRing__false" v-bind:value="false" v-model="firstAblation.boxOneRing"><span>なし</span></label>
-            </fieldset>
-            <fieldset>
-                <legend>Posterior Center Line</legend>
-                <label><input type="radio" name="content__posteriorCenterLine" id="content__posteriorCenterLine__true" v-bind:value="true" v-model="firstAblation.posteriorCenterLine"><span>あり</span></label>
-                <label><input type="radio" name="content__posteriorCenterLine" id="content__posteriorCenterLine__false" v-bind:value="false" v-model="firstAblation.posteriorCenterLine"><span>なし</span></label>
-            </fieldset>
-            <fieldset>
-                <legend>BOX完成</legend>
-                <label><input type="radio" name="content__completedBox" id="content__completedBox__true" v-bind:value="true" v-model="firstAblation.completedBox"><span>はい</span></label>
-                <label><input type="radio" name="content__completedBox" id="content__completedBox__false" v-bind:value="false" v-model="firstAblation.completedBox"><span>いいえ</span></label>
-            </fieldset>
-            <fieldset>
-                <legend>Dormant Conduction 確認</legend>
-                <label><input type="radio" name="content__dormantConduction" id="content__dormantConduction__true" v-bind:value="true" v-model="firstAblation.dormantConduction"><span>あり</span></label>
-                <label><input type="radio" name="content__dormantConduction" id="content__dormantConduction__false" v-bind:value="false" v-model="firstAblation.dormantConduction"><span>なし</span></label>
-            </fieldset>
-            <fieldset>
-                <legend>ATP静注でAF誘発</legend>
-                <label><input type="radio" name="content__afByAtp" id="content__afByAtp__true" v-bind:value="true" v-model="firstAblation.afByAtp"><span>あり</span></label>
-                <label><input type="radio" name="content__afByAtp" id="content__afByAtp__false" v-bind:value="false" v-model="firstAblation.afByAtp"><span>なし</span></label>
-            </fieldset>
-            <h3>PVI以外</h3>
-            <fieldset>
                 <legend>PVI以外施行していない</legend>
                 <label><input type="radio" name="content__onlyPvi" id="content__onlyPvi__true" v-bind:value="true" v-model="firstAblation.onlyPvi"><span>はい</span></label>
                 <label><input type="radio" name="content__onlyPvi" id="content__onlyPvi__false" v-bind:value="false" v-model="firstAblation.onlyPvi"><span>いいえ</span></label>

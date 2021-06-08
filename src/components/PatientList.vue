@@ -1,7 +1,7 @@
 <template>
     <div>
         <ul class="pagenation">
-            <li v-for="page of totalPages" :key="page" v-on:click="getPatientList(page)" v-bind:class="[Math.floor(patients[0].patientNumber / 100 + 1) == page ? 'current' : '']">{{ page * 100 - 99 }}</li>
+            <li v-for="page of reversedTotalPages" :key="page" v-on:click="getPatientList(page)" v-bind:class="[Math.floor(patients[patients.length - 1].patientNumber / 100 + 1) == page ? 'current' : '']">{{ page * 100 - 99 }}</li>
         </ul>
         <table>
             <thead>
@@ -28,7 +28,7 @@
             </tbody>
         </table>
         <ul class="pagenation">
-            <li v-for="page of totalPages" :key="page" v-on:click="getPatientList(page)" v-bind:class="[Math.floor(patients[0].patientNumber / 100 + 1) == page ? 'current' : '']">{{ page * 100 - 99 }}</li>
+            <li v-for="page of reversedTotalPages" :key="page" v-on:click="getPatientList(page)" v-bind:class="[Math.floor(patients[0].patientNumber / 100 + 1) == page ? 'current' : '']">{{ page * 100 - 99 }}</li>
         </ul>
         <Modal @close="closeFollowAblModal" v-if="followAblModal">
             <p>追加アブレーションを新規登録しますか?</p>
@@ -61,6 +61,7 @@ export default {
             ).then(( response ) => {
                 this.patients = response.data.patients;
                 this.totalPatients = response.data.totalPatients;
+                this.$store.commit( 'UPDATE_CURRENT_PAGE', page )
             });
         },
         goBaseline( number ) {
@@ -111,11 +112,19 @@ export default {
         }
     },
     mounted() {
-        this.getPatientList(1);
+        this.getPatientList( this.$store.getters.currentPage );
     },
     computed: {
         totalPages() {
             return Math.floor( this.totalPatients / 100 ) + 1;
+        },
+        reversedTotalPages() {
+            var total = Math.floor( this.totalPatients / 100 ) + 1;
+            var array = []
+            for ( var i = 0; i < total; i++ ) {
+                array.push( total - i );
+            }
+            return array;
         }
     }
 }
@@ -174,7 +183,6 @@ ul.pagenation {
     display: flex;
     flex-wrap: wrap;
     padding-left: 0;
-    justify-content: space-between;
 }
 ul.pagenation li {
     display: block;
@@ -183,6 +191,7 @@ ul.pagenation li {
     padding: 5px 10px;
     margin: 2.5px;
     background-color: #80abb0;
+    cursor: pointer;
 }
 ul.pagenation li.current {
     background-color: #e26061;
