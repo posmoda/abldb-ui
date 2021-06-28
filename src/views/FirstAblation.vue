@@ -102,11 +102,11 @@
                 <label><input type="radio" name="content__afByAtp" id="content__afByAtp__false" v-bind:value="false" v-model="firstAblation.afByAtp"><span>なし</span></label>
             </fieldset>
             <h3>PVI以外</h3>
-            <fieldset>
+            <!--<fieldset>
                 <legend>PVI以外施行していない</legend>
                 <label><input type="radio" name="content__onlyPvi" id="content__onlyPvi__true" v-bind:value="true" v-model="firstAblation.onlyPvi"><span>はい</span></label>
                 <label><input type="radio" name="content__onlyPvi" id="content__onlyPvi__false" v-bind:value="false" v-model="firstAblation.onlyPvi"><span>いいえ</span></label>
-            </fieldset>
+            </fieldset>-->
             <fieldset>
                 <legend>SVCI</legend>
                 <label><input type="radio" name="content__svci" id="content__svci__true" v-bind:value="true" v-model="firstAblation.svci"><span>あり</span></label>

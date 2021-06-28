@@ -1,7 +1,7 @@
 <template>
     <div class="pageInformation">
         <div class="sticky">
-        <h1><a href="/">KUHP Cardio Ablation Registry</a></h1>
+        <h1><a href="/abldb/">KUHP Cardio Ablation Registry</a></h1>
         <dl class="pageInformation__ptNumber">
             <dt>症例番号</dt>
             <dd>{{ currentPatient.patientNumber }}</dd>

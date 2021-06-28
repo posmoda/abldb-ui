@@ -28,7 +28,7 @@
             </tbody>
         </table>
         <ul class="pagenation">
-            <li v-for="page of reversedTotalPages" :key="page" v-on:click="getPatientList(page)" v-bind:class="[Math.floor(patients[0].patientNumber / 100 + 1) == page ? 'current' : '']">{{ page * 100 - 99 }}</li>
+            <li v-for="page of reversedTotalPages" :key="page" v-on:click="getPatientList(page)" v-bind:class="[Math.floor(patients[patients.length - 1].patientNumber / 100 + 1) == page ? 'current' : '']">{{ page * 100 - 99 }}</li>
         </ul>
         <Modal @close="closeFollowAblModal" v-if="followAblModal">
             <p>追加アブレーションを新規登録しますか?</p>

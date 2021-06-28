@@ -274,7 +274,7 @@
         <section class="register__blood">
             <h2>入院時血液検査</h2>
             <p class="form__row">
-                <label for="blood__hba1c">HcA1c (NGSP)</label>
+                <label for="blood__hba1c">HbA1c (NGSP)</label>
                 <input type="number" step="0.1" name="blood__hba1c" id="blood__hba1c" v-model="patient.hba1c">
             </p>
             <p class="form__row">
@@ -285,10 +285,11 @@
                 <label for="blood__egfr">eGFR</label>
                 <input type="number" step="0.1" name="blood__egfr" id="blood__egfr" v-model="patient.egfr">
             </p>
-            <p class="form__row">
+            <!--<p class="form__row">
                 <label for="blood__Ccr">Ccr</label>
+                <input type="number" step="0.1" name="blood__ccr" id="blood__ccr" v-bind:value="ccr" readonly>
                 <input type="number" step="0.1" name="blood__ccr" id="blood__ccr" v-model="patient.ccr">
-            </p>
+            </p>-->
             <p class="form__row">
                 <label for="blood__ntProBnp">NT-proBNP</label>
                 <input type="number" step="0.1" name="blood__ntProBnp" id="blood__ntProBnp" v-model="patient.ntProBnp">
@@ -402,6 +403,18 @@ export default {
             set: function(id) {
                 this.patient.ucgId = id;
             }
+        },
+        ccr: function() {
+            let sexValue = 0
+            if( this.patient.sex ){
+                sexValue = 1
+            } else {
+                sexValue = 0.85
+            }
+            let age = 60
+
+            let ccr = sexValue * ( ( 140 - age ) * this.patient.weight ) / ( 72 * this.patient.cre )
+            return ccr 
         }
     }
 }
