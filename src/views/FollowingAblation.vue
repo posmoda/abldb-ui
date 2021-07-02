@@ -380,11 +380,11 @@ export default {
                 this.$store.dispatch( 'updatePatientIdAction' );
             });
         },
-        updateFollowAblation() {
+        updateFollowAblation( data ) {
             const followAblationId = this.$route.params.followAblationId;
             this.axios.post(
                 this.$store.getters.apiRoot + '/following_ablation/' + followAblationId,
-                this.followingAblation, {
+                data, {
                     headers: { "Authorization": "Bearer " + this.$store.getters.loginToken },
                     data: {}
                 }
@@ -429,13 +429,19 @@ export default {
     mounted: function() {
         this.$emit('pushContents');
     },
-    beforeUpdate: function() {
-        this.updateFollowAblation();
-    },
+    //beforeUpdate: function() {
+    //    this.updateFollowAblation();
+    //},
     watch: {
         $route() {
             this.getFollowAblation();
-        }
+        },
+        followingAblation: {
+            handler: function( newData ) {
+                this.updateFollowAblation( newData );
+            },
+            deep: true
+        }   
     }
 }
 </script>

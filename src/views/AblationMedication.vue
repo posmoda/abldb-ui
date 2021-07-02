@@ -353,12 +353,12 @@ export default {
                 });        
             }
         },
-        updateAblationMedication() {
+        updateAblationMedication( data ) {
             const id = this.detectId();
             console.log( id );
             this.axios.post( 
                 this.$store.getters.apiRoot + '/medication/' + id,
-                this.ablationMedication, {
+                data, {
                     headers: { "Authorization": "Bearer " + this.$store.getters.loginToken },
                     }
             ).then(( response ) =>{
@@ -374,12 +374,18 @@ export default {
         this.$emit('pushContents');
         this.getAblationMedication();
     },
-    beforeUpdate: function() {
-        this.updateAblationMedication();
-    },
+    //beforeUpdate: function() {
+    //    this.updateAblationMedication();
+    //},
     watch: {
         parentGivenId: function(){
             this.getAblationMedication();
+        },
+        ablationMedication: {
+            handler: function( newData ) {
+                this.updateAblationMedication( newData );
+            },
+            deep: true
         }
     }
 }

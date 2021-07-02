@@ -64,7 +64,7 @@ export default {
                         }        
                     }
                 }
-                console.log( result );
+                //console.log( result );
                 //console.log( this.$el );
                 this.contents = result;
             }
