@@ -14,7 +14,7 @@
                 </tr>
                 <tr>
                     <th>ユーザー名</th>
-                    <td>{{ loginUser.id }}</td>
+                    <td><router-link to="/user_settings">{{ loginUser.id }}</router-link></td>
                 </tr>
             </table>
             <p><button v-on:click="doLogout">ログアウト</button></p>
@@ -27,7 +27,7 @@
                 <ul>
                     <li v-for="(items, chapter) in contents" :key="chapter">{{ chapter }}
                         <ul>
-                            <li v-for="(id, item) in items" :key="item.key">{{ item }}</li>
+                            <li v-for="(id, item) in items" :key="item.key" @click="scrollToElement(id)">{{ item }}</li>
                         </ul>
                     </li>
                 </ul>
@@ -73,6 +73,10 @@ export default {
                 that.$router.go({ path: that.$router.currentRoute.path, force: true });
 
             })
+        },
+        scrollToElement( topLoc ) {
+            //let elemTop = topLoc + window.pageYOffset;
+            document.documentElement.scrollTop = topLoc - 150;
         }
     }
 }
@@ -183,5 +187,8 @@ section.header__contents dd > ul > li > ul {
     font-weight: normal;
     font-size: 0.8rem;
     padding-left: 30px;
+}
+section.header__contents dd > ul > li > ul > li {
+    cursor: pointer;
 }
 </style>

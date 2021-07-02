@@ -58,8 +58,9 @@ export default {
                             result[headerText] = {};
                         }
                         if ( child.nodeName == "P" || child.nodeName == "FIELDSET" ){
-                            result[headerText][child.children[0].innerText] = 'hoge';    
-                            console.log( child );
+                            let rect = child.children[0].getBoundingClientRect();    
+                            result[headerText][child.children[0].innerText] = rect.top;    
+                            //console.log( child );
                         }        
                     }
                 }

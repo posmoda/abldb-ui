@@ -1,6 +1,6 @@
 <template>
     <section class="followingAblation__date">
-        <h1>2回目以降のアブレーション</h1>
+        <h1>{{ ablationCount }}回目のアブレーション</h1>
         <section class="followingAblation__medication">
             <h2>施行日</h2>
             <p class="form__row">
@@ -416,6 +416,13 @@ export default {
             })
         }
     },
+    computed: {
+        ablationCount() {
+            const ablId = this.$route.params.followAblationId;
+            const followAblationList = this.$store.getters.currentPatient.followingAblations;
+            return followAblationList.indexOf( ablId ) + 2;
+        }
+    },
     created: function() {
         this.getFollowAblation();
     },
@@ -424,6 +431,11 @@ export default {
     },
     beforeUpdate: function() {
         this.updateFollowAblation();
+    },
+    watch: {
+        $route() {
+            this.getFollowAblation();
+        }
     }
 }
 </script>

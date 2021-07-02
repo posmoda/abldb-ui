@@ -46,6 +46,12 @@ const routes = [
         component: () => import(/* webpackChunkName: "followUp" */ '@/views/FollowUp.vue')
     },
     {
+        path: '/user_settings',
+        name: 'UserSettings',
+        meta: { requireAuth: true },
+        component: () => import( /* webpackChunkName: "userSettings" */ '@/views/UserSettings.vue' )
+    },
+    {
         path: '/login',
         name: 'Login',
         component: () => import(/* webpackChunkName: "logIn" */ '@/components/Login.vue')
