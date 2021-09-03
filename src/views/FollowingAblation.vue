@@ -115,6 +115,11 @@
                 <label><input type="radio" name="content__newPlsvcReisolation" id="content__newPlsvcReisolation__false" v-bind:value="false" v-model="followingAblation.newPlsvcReisolation"><span>なし</span></label>
             </fieldset>
             <fieldset>
+                <legend>新規 PLSVC Isolation完成</legend>
+                <label><input type="radio" name="content__completedNewPlsvcReisolation" id="content__completedNewPlsvcReisolation__true" v-bind:value="true" v-model="followingAblation.completedNewPlsvcReisolation"><span>あり</span></label>
+                <label><input type="radio" name="content__completedNewPlsvcReisolation" id="content__completedNewPlsvcReisolation__false" v-bind:value="false" v-model="followingAblation.completedNewPlsvcReisolation"><span>なし</span></label>
+            </fieldset>
+            <fieldset>
                 <legend>Non-PV Foci</legend>
                 <label><input type="radio" name="content__nonPvFoci" id="content__nonPvFoci__true" v-bind:value="true" v-model="followingAblation.nonPvFoci"><span>あり</span></label>
                 <label><input type="radio" name="content__nonPvFoci" id="content__nonPvFoci__false" v-bind:value="false" v-model="followingAblation.nonPvFoci"><span>なし</span></label>

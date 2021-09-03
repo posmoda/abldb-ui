@@ -19,6 +19,7 @@
                 <label><input type="radio" name="content__carto" id="content__carto__eightmm" value="8mm" v-model="firstAblation.carto"><span>8mm</span></label>
                 <label><input type="radio" name="content__carto" id="content__carto__st" value="st" v-model="firstAblation.carto"><span>ST</span></label>
                 <label><input type="radio" name="content__carto" id="content__carto__stsf" value="stsf" v-model="firstAblation.carto"><span>ST/SF</span></label>
+                <label><input type="radio" name="content__carto" id="content__carto__irrigation" value="irrigation" v-model="firstAblation.carto"><span>irrigation</span></label>
             </fieldset>
             <fieldset :class="{ hidden: !firstAblation.threedSystemEnsite }">
                 <legend>EnSite</legend>
