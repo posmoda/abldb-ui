@@ -157,6 +157,72 @@
                 <input type="date" name="antiArrhythmic__antiArrhythmicAfterFinalSessionRestartDate" id="antiArrhythmic__antiArrhythmicAfterFinalSessionRestartDate" v-model="followUp.antiArrhythmicAfterFinalSessionRestartDate">
             </p>
         </section>
+        <fieldset>
+            <label><input type="radio" name="selectUcg" id="selectUcg1" value="1" v-model="ui.selectUcg"><span>0-3か月後のUCG</span></label>
+            <label><input type="radio" name="selectUcg" id="selectUcg2" value="2" v-model="ui.selectUcg"><span>3-6か月後のUCG</span></label>
+            <label><input type="radio" name="selectUcg" id="selectUcg3" value="3" v-model="ui.selectUcg"><span>6-12か月後のUCG</span></label>
+        </fieldset>
+        <section class="followUp__ucg" v-bind:class="{ show: ui.selectUcg == '1' }">
+            <h2>0-3か月後のf/u UCG日</h2>
+            <p class="form__row">
+                <label for="ucg__ucg1Date">0-3か月後のf/u UCG日</label>
+                <input type="date" name="ucg__ucg1Date" id="ucg__ucg1Date" v-model="followUp.ucg1Date">
+            </p>
+            <UCG :ucgId="followUp.ucgId1"></UCG>
+        </section>
+        <section class="followUp__ucg" v-bind:class="{ show: ui.selectUcg == '2' }">
+            <h2>3-6か月後のf/u UCG日</h2>
+            <p class="form__row">
+                <label for="ucg__ucg1Date">3-6か月後のf/u UCG日</label>
+                <input type="date" name="ucg__ucg2Date" id="ucg__ucg2Date" v-model="followUp.ucg2Date">
+            </p>
+            <UCG :ucgId="followUp.ucgId2"></UCG>
+        </section>
+        <section class="followUp__ucg" v-bind:class="{ show: ui.selectUcg == '3' }">
+            <h2>6-12か月後のf/u UCG日</h2>
+            <p class="form__row">
+                <label for="ucg__ucg1Date">6-12か月後のf/u UCG日</label>
+                <input type="date" name="ucg__ucg3Date" id="ucg__ucg3Date" v-model="followUp.ucg3Date">
+            </p>
+            <UCG :ucgId="followUp.ucgId3"></UCG>
+        </section>
+        <fieldset>
+            <label><input type="radio" name="selectBlood" id="selectBlood1" value="1" v-model="ui.selectBlood"><span>0-3か月後の血液検査</span></label>
+            <label><input type="radio" name="selectBlood" id="selectBlood2" value="2" v-model="ui.selectBlood"><span>3-6か月後の血液検査</span></label>
+            <label><input type="radio" name="selectBlood" id="selectBlood3" value="3" v-model="ui.selectBlood"><span>6-12か月後の血液検査</span></label>
+        </fieldset>
+        <section class="followUp__blood" v-bind:class="{ show: ui.selectBlood == '1' }">
+            <h2>0-3か月後のf/u 血液検査日</h2>
+            <p class="form__row">
+                <label for="blood__blood1Date">0-3か月後のf/u 血液検査日</label>
+                <input type="date" name="blood__blood1Date" id="blood__blood1Date" v-model="followUp.blood1Date">
+            </p>
+            <Blood :bloodId="followUp.bloodId1"></Blood>
+        </section>
+        <section class="followUp__blood" v-bind:class="{ show: ui.selectBlood == '2' }">
+            <h2>3-6か月後のf/u 血液検査日</h2>
+            <p class="form__row">
+                <label for="blood__blood2Date">3-6か月後のf/u 血液検査日</label>
+                <input type="date" name="blood__blood2Date" id="blood__blood2Date" v-model="followUp.blood2Date">
+            </p>
+            <Blood :bloodId="followUp.bloodId2"></Blood>
+        </section>
+        <section class="followUp__blood" v-bind:class="{ show: ui.selectBlood == '3' }">
+            <h2>6-12か月後のf/u 血液検査日</h2>
+            <p class="form__row">
+                <label for="blood__blood3Date">6-12か月後のf/u 血液検査日</label>
+                <input type="date" name="blood__blood3Date" id="blood__blood3Date" v-model="followUp.blood3Date">
+            </p>
+            <Blood :bloodId="followUp.bloodId3"></Blood>
+        </section>
+        <h2>Holter</h2>
+        <fieldset>
+            <label v-for="holter in holters" v-bind:key="holter.holter_id"><input type="radio" name="selectHolter" v-bind:id="holter.holter_id" v-bind:value="holter.holter_id" v-model="ui.selectHolter"><span v-if="holter.date">{{holter.date}}</span><span v-else>日付未入力</span></label>
+            <button v-on:click="createHolter">新規Holter</button>
+        </fieldset>
+        <section v-for="holter in holters" v-bind:key="'holter' + String(holter.holter_id)" class="followUp__holter" v-bind:class="{ show: ui.selectHolter == holter.holter_id }">
+            <Holter :holterId="holter.holter_id"></Holter>
+        </section>
         <section class="followUp__followUpItems">
             <h2>f/u項目</h2>
             <fieldset>
@@ -317,11 +383,32 @@
     </section>
 </template>
 <script>
+import UCG from '@/components/ucg.vue'
+import Blood from '@/components/Blood.vue'
+import Holter from '@/components/Holter.vue'
 export default {
     name: 'FollowUp',
+    components: {
+        UCG,
+        Blood,
+        Holter
+    },
     data() {
         return {
-            followUp: {}
+            followUp: {
+                ucgId1: null,
+                ucgId2: null,
+                ucgId3: null,
+                bloodId1: null,
+                bloodId2: null,
+                bloodId3: null
+            },
+            ui: {
+                selectUcg: '1',
+                selectBlood: '1',
+                //selectHolter: this.holters[0]
+            },
+            holters: []
         }
     },
     methods: {
@@ -348,17 +435,59 @@ export default {
             ).then(( response ) => {
                 this.followUp = response.data;
             })
+        },
+        getHolterList: function() {
+            this.axios.get( this.$store.getters.apiRoot + '/holter_list/' + this.$route.params.patientId, { //this.$store.getters.patientId
+                headers: { "Authorization": "Bearer " + this.$store.getters.loginToken },
+                data: {}
+            }
+            ).then(( response ) => {
+                this.holters = response.data;
+            })
+        },
+        createHolter: function() {
+            this.axios.get( this.$store.getters.apiRoot + '/holter/' + this.$route.params.patientId + '/new', { //this.$store.getters.patientId
+                headers: { "Authorization": "Bearer " + this.$store.getters.loginToken },
+                data: {}
+            }
+            ).then(( response ) => {
+                this.holters = response.data;
+            })
+
         }
     },
     mounted: function() {
         this.$emit('pushContents');
         this.getFollowUp();
+        this.getHolterList();
     },
     beforeUpdate: function() {
         this.updateFollowUp();
+    },
+    computed: {
+        ucgId: {
+            get: function( number ) {
+                return this.followUp[ 'ucgId' + String(number) ];
+            },
+            set: function( number, id ) {
+                this.followUp[ 'ucgId' + String( number ) ] = id;
+            }
+        }
     }
 }
 </script>
-
-
-
+<style>
+.followUp__ucg,
+.followUp__blood,
+.followUp__holter {
+    display: none;
+    padding: 1em;
+    margin-top: 0;
+    border: 1px solid gray;
+}
+.followUp__ucg.show,
+.followUp__blood.show,
+.followUp__holter.show{
+    display: block;
+}
+</style>
