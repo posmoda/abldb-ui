@@ -63,7 +63,6 @@ export default {
             this.$emit( 'getHolterId', id );
         },
         getHolter: function( id ) {
-            console.log('iikagennishi');
             this.axios.get(
                 this.$store.getters.apiRoot + '/holter/' + id, {
                 headers: { "Authorization": "Bearer " + this.$store.getters.loginToken },
@@ -86,6 +85,9 @@ export default {
                     console.log( 'Holter update: FAILED' );
                 }
             });
+        },
+        testLog: function() {
+            console.log( this.holterId );
         }
     },
     //computed: {
@@ -100,7 +102,6 @@ export default {
     },
     mounted: function() {
         this.getHolter( this.holterId );
-        console.log( 'mounted' );
     },
     beforeUpdate: function() {
         this.updateHolter();
