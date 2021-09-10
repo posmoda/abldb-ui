@@ -257,4 +257,39 @@ fieldset.panel > label:last-of-type {
     margin-right: 0;
     border-right-width: 1px;
 }
+*.selectTab {
+    margin: 0;
+    margin-top: 20px;
+    margin-bottom: 0;
+    padding: 0;
+}
+*.selectTab > label > span {
+    padding: 1em 0;
+    background-color: #fcfcfc;
+    color: #666;
+}
+*.selectTab > label:first-of-type {
+    margin-left: 0;
+
+}
+*.selectTab > label:last-of-type {
+    margin-right: 0;
+}
+.selectCard {
+    display: none;
+    padding: 1em 1em;
+    background-color: #fcfcfc;
+    border: 2px solid #80abb0;
+    border-top: none;
+}
+.selectCard p.form__row,
+.selectCard fieldset {
+    border: 2px solid #80abb0;
+}
+.selectCard h2:first-child {
+    margin: 0;
+}
+.selectCard.show {
+    display: block;
+}
 </style>
