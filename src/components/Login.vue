@@ -41,7 +41,7 @@ export default {
                 console.log("firsthash: " + hash);
 
                 const letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-                const userSalt = Array.from(crypto.getRandomValues(new Uint32Array(50))).map((n)=>letters[n%letters.length]).join('')
+                const userSalt = Array.from(crypto.getRandomValues(new Uint32Array(64))).map((n)=>letters[n%letters.length]).join('')
                 console.log(hash + userSalt);
                 sha = new jssha("SHA-256", "TEXT"); 
                 sha.update(hash + userSalt)

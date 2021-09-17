@@ -1,0 +1,81 @@
+<template>
+    <div class="userSettings">
+        <section class="settings__admin" v-if="loginUser=='admin'">
+            <h1>ユーザ追加</h1>
+            <p><label>新規ID<input type="text" name="settings__newUserName" id="settings__newUserName" v-model="newUser.id"></label></p>
+            <p><label>所属
+                <select name="settings__newUserInstitute" id="settings__newUserInstitute" v-model="newUser.institute">
+                    <option v-for="(institute, index) in existingUsers.institutes" :key="index" :value="index">{{ institute }}</option>
+                    <option :value="false">新規登録</option>
+                </select>
+            </label>
+            <label v-if="newUser.institute == false">新規所属<input type="text"></label>
+            </p>
+            <p><label>新規パスワード<input type="password" name="settings__newPassword" id="settings__newPassword" v-model="newUser.password"></label></p>
+            <p><button v-on:click="postNewUser">新規登録</button><span v-if="message">{{ message }}</span></p>
+        </section>
+    </div>
+</template>
+<script>
+import jssha from 'jssha'
+export default {
+    name: 'UserSettings',
+    computed: {
+        loginUser() {
+            return this.$store.getters.loginUser.id;
+        }
+    },
+    data() {
+        return {
+            newUser: {
+                id: null,
+                institute: null,
+                password: null,
+                passwordCheck: null,
+            },
+            existingUsers: {
+                ids: [],
+                institutes: {
+                    1: "Kyodai",
+                    2: "Todai"
+                }
+            },
+            message: ""
+        }
+    },
+    methods: {
+        getExistingUsers() {
+            this.axios.get( this.$store.getters.apiRoot + '/existing_users', {
+                headers: { "Authorization": "Bearer " + this.$store.getters.loginToken },
+                data: {}
+            } ).then(( response ) => {
+                this.existingUsers = response.data;
+            });
+        },
+        postNewUser() {
+            let sha = new jssha( "SHA-256", "TEXT" );
+            const letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            const salt = Array.from(crypto.getRandomValues(new Uint32Array(64))).map((n)=>letters[n%letters.length]).join('');
+            sha.update( this.newUser.password + salt );
+            let hash = sha.getHash( "HEX" );
+
+            let newUser = {
+                user: this.newUser.id,
+                institute: this.newUser.institute,
+                salt: salt,
+                hash: hash
+            }
+            
+            this.axios.post( this.$store.getters.apiRoot + "/new_user", newUser, {
+                headers: { "Authorization": "Bearer " + this.$store.getters.loginToken },
+                data: {}
+            } ).then( response => {
+                this.message = response.data.message;
+            } )
+        }
+    },
+    mounted: function() {
+        this.getExistingUsers();
+    }
+}
+</script>
