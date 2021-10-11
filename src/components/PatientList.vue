@@ -46,7 +46,7 @@ export default {
     data: function() {
         return {
             patients: [
-                { patientSerialNumber: 1, baseline: true, firstAblation: true, followingAblation: false }
+                //{ patientSerialNumber: 1, baseline: true, firstAblation: true, followingAblation: false }
             ],
             totalPatients: 0,
             followAblModal: false
