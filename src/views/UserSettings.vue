@@ -78,6 +78,8 @@ export default {
                         this.message = '失敗ですよ';
                     }
                 })
+            } else {
+                this.postNewUserComm();
             }
         },
         postNewUserComm() {
