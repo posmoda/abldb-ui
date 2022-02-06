@@ -2,11 +2,15 @@
     <section class="blood">
             <p class="form__row">
                 <label for="blood__cre">Cre</label>
-                <input type="number" step="0.1" name="blood__cre" id="blood__cre" v-model="blood.cre">%
+                <input type="number" step="0.1" name="blood__cre" id="blood__cre" v-model="blood.cre">mg/dL
             </p>
             <p class="form__row">
                 <label for="blood__bnp">BNP</label>
-                <input type="number" step="0.1" name="blood__bnp" id="blood__bnp" v-model="blood.bnp">%
+                <input type="number" step="0.1" name="blood__bnp" id="blood__bnp" v-model="blood.bnp">pg/mL
+            </p>
+            <p class="form__row">
+                <label for="blood__bnp">NT-proBNP</label>
+                <input type="number" step="0.1" name="blood__ntProBnp" id="blood__ntProBnp" v-model="blood.ntProBnp">pg/mL
             </p>
     </section>
 </template>

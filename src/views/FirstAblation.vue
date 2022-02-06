@@ -7,6 +7,14 @@
             <label for="content__date">施行日</label>
             <input type="date" name="content__date" id="content__date" v-model="firstAblation.date">
         </p>
+        <p class="form__row">
+            <label for="content__hospitalizationDate">入院日</label>
+            <input type="date" name="content__hospitalizationDate" id="content__hospitalizationDate" v-model="firstAblation.hospitalizationDate">
+        </p>
+        <p class="form__row">
+            <label for="content__dischargeDate">退院日</label>
+            <input type="date" name="content__dischargeDate" id="content__dischargeDate" v-model="firstAblation.dischargeDate">
+        </p>
             <fieldset>
                 <legend>3D system</legend>
                 <label><input type="checkbox" name="content__threedSystem" id="content__threedSystem__carto" value="CARTO" v-model="firstAblation.threedSystemCarto"><span>CARTO</span></label>

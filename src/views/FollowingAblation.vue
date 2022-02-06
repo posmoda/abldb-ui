@@ -2,10 +2,18 @@
     <section class="followingAblation__date">
         <h1>{{ ablationCount }}回目のアブレーション</h1>
         <section class="followingAblation__medication">
-            <h2>施行日</h2>
+            <h2>日程</h2>
             <p class="form__row">
                 <label for="followingAblation__date">施行日</label>
                 <input type="date" name="followingAblation__date" id="followingAblation__date" v-model="followingAblation.date">
+            </p>
+            <p class="form__row">
+                <label for="followingAblation__hospitalizationDate">入院日</label>
+                <input type="date" name="followingAblation__hospitalizationDate" id="followingAblation__hospitalizationDate" v-model="followingAblation.hospitalizationDate">
+            </p>
+            <p class="form__row">
+                <label for="followingAblation__dischargeDate">退院日</label>
+                <input type="date" name="followingAblation__dischargeDate" id="followingAblation__dischargeDate" v-model="followingAblation.dischargeDate">
             </p>
         </section>
         <!--<UCG :ucgId="followingAblation.ucgId"></UCG>-->

@@ -1,3 +1,3 @@
-module.exports = {
-    publicPath: '/abldb/',
-};
+//module.exports = {
+//    publicPath: '/abldb/',
+//};
