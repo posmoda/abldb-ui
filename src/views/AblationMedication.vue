@@ -311,6 +311,9 @@
                 <label><input type="radio" name="medication__steroid" id="medication__steroid__false" v-bind:value="false" v-model="ablationMedication.steroid"><span>いいえ</span></label>
             </fieldset>
         </section>
+        <section class="form__save">
+            <button class="form__saveButton" type="button" :disabled="isSaveDisabled" v-on:click="updateAblationMedication(ablationMedication)">保存する</button>
+        </section>
     </section>
 </template>
 <script>
@@ -323,7 +326,8 @@ export default {
         return {
             ablationMedication: {
             },
-            isIdRouted: false
+            isIdRouted: false,
+            isSaveDisabled: true
         }
     },
     methods:{
@@ -364,11 +368,21 @@ export default {
             ).then(( response ) =>{
                 if( response.status == 200 ){
                     console.log( 'Medication update: SUCCESS' )
+                    this.disableSave();
                 } else {
                     console.log( 'Medication update: FAILURE' )
                 }
             });
-        }
+        },
+        updateFromParent() {
+            this.updateAblationMedication( this.ablationMedication );
+        },
+        disableSave: function(){
+            this.isSaveDisabled = true;
+        },
+        enableSave: function(){
+            this.isSaveDisabled = false;
+        },
     },
     mounted: function() {
         this.$emit('pushContents');
@@ -382,8 +396,12 @@ export default {
             this.getAblationMedication();
         },
         ablationMedication: {
-            handler: function( newData ) {
-                this.updateAblationMedication( newData );
+            //handler: function( newData ) {
+            //    this.updateAblationMedication( newData );
+            //},
+            handler: function() {
+                this.enableSave();  
+                this.$emit('enableParentSave');
             },
             deep: true
         }

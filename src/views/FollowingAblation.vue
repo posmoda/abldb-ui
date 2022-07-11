@@ -353,7 +353,10 @@
                 <input type="text" name="content__complicationsDetail" id="content__complicationsDetail" v-model="followingAblation.complicationsDetail">
             </p>
         </section>
-        <AblationMedication :parentGivenId="followingAblation.internalMedicineId"></AblationMedication>
+        <AblationMedication :parentGivenId="followingAblation.internalMedicineId" @enableParentSave="enableSave" ref="ablMedication"></AblationMedication>
+        <section class="form__save">
+            <button class="form__saveButton" type="button" :disabled="isSaveDisabled" v-on:click="updateAll">保存する</button>
+        </section>
         <p><button class="caution" v-on:click="openModal">このアブレーションを削除する</button></p>
         <Modal @close="closeModal" v-if="modal">
             <p>本当にこのアブレーションを削除しますか？</p>
@@ -377,7 +380,8 @@ export default {
         return {
             followingAblation: {
             },
-            modal: false
+            modal: false,
+            isSaveDisabled: true
         }
     },
     methods: {
@@ -427,6 +431,17 @@ export default {
                     this.$router.push({ name: 'Home' });        
                 }
             })
+        },
+        disableSave: function(){
+            this.isSaveDisabled = true;
+        },
+        enableSave: function(){
+            this.isSaveDisabled = false;
+        },
+        updateAll: function() {
+            this.updateFollowAblation( this.followingAblation );
+            this.$refs.ablMedication.updateFromParent();
+            this.disableSave();
         }
     },
     computed: {
@@ -450,8 +465,11 @@ export default {
             this.getFollowAblation();
         },
         followingAblation: {
-            handler: function( newData ) {
-                this.updateFollowAblation( newData );
+            //handler: function( newData ) {
+            //    this.updateFollowAblation( newData );
+            //},
+            handler: function() {
+                this.enableSave();
             },
             deep: true
         }   

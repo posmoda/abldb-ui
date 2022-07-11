@@ -43,7 +43,7 @@ export default new Vuex.Store({
             token: null
         },
         apiRoot: "http://localhost:5000/api"
-        //apiRoot: "https://www.postmoderns.info/abldb-api"
+        //apiRoot: "https://abldb.med.kyoto-u.ac.jp/api"
     },
     mutations: {
         [ types.UPDATE_PATIENT_ID ]( state, patientSerialNumber ){

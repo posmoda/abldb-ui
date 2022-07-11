@@ -171,10 +171,16 @@ export default {
     watch: {
         ucgId: function( newId ) {
             this.getUcg( newId );
+        },
+        ucg: {
+            handler: function() {
+                this.$emit( 'enableParentSave' );
+            },
+            deep: true
         }
     },
     beforeUpdate: function() {
-        this.updateUcg();
+        //this.updateUcg();
     }
 }
 </script>

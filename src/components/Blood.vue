@@ -63,10 +63,16 @@ export default {
     watch: {
         bloodId: function( newId ) {
             this.getBlood( newId );
+        },
+        blood: {
+            handler: function() {
+                this.$emit( 'enableParentSave' );
+            },
+            deep: true
         }
     },
     beforeUpdate: function() {
-        this.updateBlood();
+        //this.updateBlood();
     }
 }
 </script>

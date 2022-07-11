@@ -339,7 +339,10 @@
                 <input type="number" step="0.1" name="blood__tbil" id="blood__tbil" v-model="patient.tbil">
             </p>
         </section>
-        <UCG :ucgId="patient.ucgId"></UCG>
+        <UCG :ucgId="patient.ucgId" @enableParentSave="enableSave" ref="ucg"></UCG>
+        <section class="form__save">
+            <button class="form__saveButton" type="button" :disabled="isSaveDisabled" v-on:click="updateAll">保存する</button>
+        </section>
     </section>
 </template>
 
@@ -356,6 +359,7 @@ export default {
                 patientSerialNumber: this.$store.getters.patientId,
                 ucgId: null
             },
+            isSaveDisabled: true,
         }
     },
     methods: {
@@ -384,6 +388,17 @@ export default {
             ).then(( response ) => {
                 this.patient = response.data;
             })
+        },
+        disableSave: function(){
+            this.isSaveDisabled = true;
+        },
+        enableSave: function(){
+            this.isSaveDisabled = false;
+        },
+        updateAll: function() {
+            this.updateBaseline();
+            this.$refs.ucg.updateUcg();
+            this.disableSave();
         }
     },
     mounted: function() {
@@ -393,7 +408,15 @@ export default {
         this.getBaseline();
     },
     beforeUpdate: function() {
-        this.updateBaseline();
+        //this.updateBaseline();
+    },
+    watch: {
+        patient: {
+            handler: function() {
+                this.enableSave();
+            },
+            deep: true
+        }
     },
     computed: {
         ucgId: {

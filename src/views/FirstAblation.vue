@@ -375,6 +375,9 @@
                 <input type="text" name="complex__transfusionReason" id="complex__transfusionReason" v-model="firstAblation.transfusionReason">
             </p>
         </section>
+        <section class="form__save">
+            <button class="form__saveButton" type="button" :disabled="isSaveDisabled" v-on:click="updateFirstAblation">保存する</button>
+        </section>
     </section>
 </template>
 <script>
@@ -382,7 +385,8 @@ export default {
     data() {
         return {
             firstAblation: {
-            }
+            },
+            isSaveDisabled: true,
         }
     },
     methods: {
@@ -395,9 +399,10 @@ export default {
                 }
             ).then(( response ) => {
                 if( response.status == 200 ){
-                    console.log( 'Baseline update: SUCCESS' )
+                    console.log( 'FirstABL update: SUCCESS' )
+                    this.disableSave();
                 } else {
-                    console.log( 'Baseline update: FAILED' )
+                    console.log( 'FirstABL update: FAILED' )
                 }
             });
         },
@@ -410,14 +415,28 @@ export default {
                 this.firstAblation = response.data;
                 this.$store.dispatch('updatePatientIdAction');
             })
+        },
+        disableSave: function(){
+            this.isSaveDisabled = true;
+        },
+        enableSave: function(){
+            this.isSaveDisabled = false;
         }
     },
     mounted: function() {
         this.$emit('pushContents');
         this.getFirstAblation();
     },
+    watch: {
+        firstAblation: {
+            handler: function() {
+                this.enableSave();
+            },
+            deep: true
+        }
+    },
     beforeUpdate: function() {
-        this.updateFirstAblation();
+        //this.updateFirstAblation();
     },
     destroyed: function() {
     }

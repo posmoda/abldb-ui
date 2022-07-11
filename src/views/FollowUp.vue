@@ -168,21 +168,21 @@
                 <label for="ucg__ucg1Date">0-3か月後のf/u UCG日</label>
                 <input type="date" name="ucg__ucg1Date" id="ucg__ucg1Date" v-model="followUp.ucg1Date">
             </p>
-            <UCG :ucgId="followUp.ucgId1"></UCG>
+            <UCG :ucgId="followUp.ucgId1" @enableParentSave="enableSave" ref="ucg1"></UCG>
         </section>
         <section class="followUp__ucg selectCard" v-bind:class="{ show: ui.selectUcg == '2' }">
             <p class="form__row">
                 <label for="ucg__ucg1Date">3-6か月後のf/u UCG日</label>
                 <input type="date" name="ucg__ucg2Date" id="ucg__ucg2Date" v-model="followUp.ucg2Date">
             </p>
-            <UCG :ucgId="followUp.ucgId2"></UCG>
+            <UCG :ucgId="followUp.ucgId2" @enableParentSave="enableSave" ref="ucg2"></UCG>
         </section>
         <section class="followUp__ucg selectCard" v-bind:class="{ show: ui.selectUcg == '3' }">
             <p class="form__row">
                 <label for="ucg__ucg1Date">6-12か月後のf/u UCG日</label>
                 <input type="date" name="ucg__ucg3Date" id="ucg__ucg3Date" v-model="followUp.ucg3Date">
             </p>
-            <UCG :ucgId="followUp.ucgId3"></UCG>
+            <UCG :ucgId="followUp.ucgId3" @enableParentSave="enableSave" ref="ucg3"></UCG>
         </section>
         <h2>血液検査</h2>
         <fieldset class="selectTab">
@@ -195,21 +195,21 @@
                 <label for="blood__blood1Date">0-3か月後のf/u 血液検査日</label>
                 <input type="date" name="blood__blood1Date" id="blood__blood1Date" v-model="followUp.blood1Date">
             </p>
-            <Blood :bloodId="followUp.bloodId1"></Blood>
+            <Blood :bloodId="followUp.bloodId1" @enableParentSave="enableSave" ref="blood1"></Blood>
         </section>
         <section class="followUp__blood selectCard" v-bind:class="{ show: ui.selectBlood == '2' }">
             <p class="form__row">
                 <label for="blood__blood2Date">3-6か月後のf/u 血液検査日</label>
                 <input type="date" name="blood__blood2Date" id="blood__blood2Date" v-model="followUp.blood2Date">
             </p>
-            <Blood :bloodId="followUp.bloodId2"></Blood>
+            <Blood :bloodId="followUp.bloodId2" @enableParentSave="enableSave" ref="blood2"></Blood>
         </section>
         <section class="followUp__blood selectCard" v-bind:class="{ show: ui.selectBlood == '3' }">
             <p class="form__row">
                 <label for="blood__blood3Date">6-12か月後のf/u 血液検査日</label>
                 <input type="date" name="blood__blood3Date" id="blood__blood3Date" v-model="followUp.blood3Date">
             </p>
-            <Blood :bloodId="followUp.bloodId3"></Blood>
+            <Blood :bloodId="followUp.bloodId3" @enableParentSave="enableSave" ref="blood3"></Blood>
         </section>
         <h2>Holter</h2>
         <fieldset class="selectTab">
@@ -217,7 +217,7 @@
             <button v-on:click="createHolter">新規Holter</button>
         </fieldset>
         <section v-for="holter in holters" v-bind:key="'holter' + String(holter.holter_id)" class="followUp__holter selectCard" v-bind:class="{ show: ui.selectHolter == holter.holter_id }">
-            <Holter :holterId="holter.holter_id"></Holter>
+            <Holter :holterId="holter.holter_id" @enableParentSave="enableSave" :ref="'holter' + holter.holter_id"></Holter>
         </section>
         <section class="followUp__followUpItems">
             <h2>f/u項目</h2>
@@ -376,6 +376,9 @@
                 <input type="text" name="followUpEvents__primaryDoctor" id="followUpEvents__primaryDoctor" v-model="followUp.primaryDoctor">
             </p>
         </section>
+        <section class="form__save">
+            <button class="form__saveButton" type="button" :disabled="isSaveDisabled" v-on:click="updateAll">保存する</button>
+        </section>
     </section>
 </template>
 <script>
@@ -404,7 +407,8 @@ export default {
                 selectBlood: '1',
                 //selectHolter: this.holters[0]
             },
-            holters: []
+            holters: [],
+            isSaveDisabled: true
         }
     },
     methods: {
@@ -450,6 +454,29 @@ export default {
                 this.holters = response.data;
             })
 
+        },
+        disableSave: function(){
+            this.isSaveDisabled = true;
+        },
+        enableSave: function(){
+            this.isSaveDisabled = false;
+        },
+        updateAll: function() {
+            this.updateFollowUp();
+            this.$refs.ucg1.updateUcg();
+            this.$refs.ucg2.updateUcg();
+            this.$refs.ucg3.updateUcg();
+            this.$refs.blood1.updateBlood();
+            this.$refs.blood2.updateBlood();
+            this.$refs.blood3.updateBlood();
+
+            for( let i = 0; i < this.holters.length; i++ ){
+                let refHolterId = this.holters[i].holter_id;
+                console.log('holter' + refHolterId);
+                this.$refs['holter' + refHolterId][0].updateHolter();
+            }
+
+            this.disableSave();
         }
     },
     mounted: function() {
@@ -458,7 +485,15 @@ export default {
         this.getHolterList();
     },
     beforeUpdate: function() {
-        this.updateFollowUp();
+        //this.updateFollowUp();
+    },
+    watch: {
+        followUp: {
+            handler: function() {
+                this.enableSave();
+            },
+            deep: true
+        }
     },
     computed: {
         ucgId: {

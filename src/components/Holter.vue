@@ -9,8 +9,8 @@
                 <input type="number" step="1" name="holter__recordedHours" id="holter__recordedHours" v-model="holter.recordedHours">
             </p>
             <p class="form__row">
-                <label for="holter__recordedMinutes">記録時間(分）)</label>
-                <input type="number" step="1" name="holter__recordedMinutes" id="holter__recordedMinutes" v-model="holter.recordeMinutes">
+                <label for="holter__recordedMinutes">記録時間(分)</label>
+                <input type="number" step="1" name="holter__recordedMinutes" id="holter__recordedMinutes" v-model="holter.recordedMinutes">
             </p>
             <p class="form__row">
                 <label for="holter__totalPac">PACの総数(洞調律の場合)</label>
@@ -98,13 +98,19 @@ export default {
     watch: {
         holterId: function( newId ) {
             this.getHolter( newId );
+        },
+        holter: {
+            handler: function() {
+                this.$emit( 'enableParentSave' );
+            },
+            deep: true
         }
     },
     mounted: function() {
         this.getHolter( this.holterId );
     },
     beforeUpdate: function() {
-        this.updateHolter();
+        //this.updateHolter();
     }
 }
 </script>

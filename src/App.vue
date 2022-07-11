@@ -93,6 +93,7 @@ body {
     margin-left: 20%;
     margin-top: 80px;
     padding: 0 10%;
+    padding-bottom: 100px;
     max-width: 80%;
     background-color: #dddddd;
     position: relative;
@@ -291,5 +292,22 @@ fieldset.panel > label:last-of-type {
 }
 .selectCard.show {
     display: block;
+}
+.form__save {
+    background-color: #80abb0;
+    position: fixed;
+    bottom: 0;
+    left: 20%;
+    right: 0;
+    padding: 10px 20px;
+    text-align: right;
+}
+.form__saveButton {
+    padding: 10px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.followingAblation__date .ablationMedication .form__save {
+    display: none;
 }
 </style>
